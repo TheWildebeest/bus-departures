@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./variables.module";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-header {
+  @include display_flex_row;
+  top: 0;
+  left: 0;
+  height: 12vh;
+  width: 100vw;
+  background-color: $busgrey;
+  border-bottom: 10px solid $busred;
+
+  .white {
+    color: white;
+  }
+
+  .red {
+    color: $busred;
+  }
+}

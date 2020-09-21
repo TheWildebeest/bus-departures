@@ -1,0 +1,25 @@
+$busred: #dc2521;
+$busgrey: #414b55;
+$primary-shadow: 0px 10px 0px $busred;
+$secondary-shadow: 5px 5px 0px $busgrey;
+
+@font-face {
+  font-family: "unibody";
+  src: url("assets/fonts/unibody.woff2");
+  src: url("assets/fonts/unibody.woff");
+  src: url("assets/fonts/unibody.ttf");
+}
+
+@mixin display_flex_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@mixin display_flex_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
