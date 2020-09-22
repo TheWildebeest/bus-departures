@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  transportApi: {
+    key: "22da4709b682eb9ec88c9e39e2ce4cc7",
+    ID: "26bf3c4f"
+  }
 };
 
 /*
