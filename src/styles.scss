@@ -8,7 +8,14 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.app-header {
+body {
+  background-image: linear-gradient(#ffa50033, #ffa50033), linear-gradient(#ffffffdd, #ffffffdd),
+    url("assets/images/background.jpg");
+  min-height: 100vh;
+  width: 100vw;
+}
+
+app-header {
   @include display_flex_row;
   top: 0;
   left: 0;
@@ -17,6 +24,21 @@
   background-color: $busgrey;
   border-bottom: 10px solid $busred;
 
+  .app-header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    text-align: center;
+
+    .omnibus-logo {
+      height: 10vh;
+    }
+
+    h1 {
+      margin: auto;
+    }
+  }
+
   .white {
     color: white;
   }
@@ -24,4 +46,21 @@
   .red {
     color: $busred;
   }
+}
+
+app-main {
+  width: 100%;
+  height: 88vh;
+
+  .main-content {
+    height: 100%;
+  }
+}
+
+.map-wrapper,
+.departures-board-wrapper {
+  position: relative;
+  width: 80%;
+  margin: 5vh auto;
+  height: 35vh;
 }
