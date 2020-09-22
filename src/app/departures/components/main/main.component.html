@@ -1,7 +1,9 @@
 <main class="main-content">
-  <p>HELLO</p>
-  <div id="map">
-    <google-map [options]="options" (click)="handleClick($event)">
+  <div class="departures-board-wrapper">
+
+  </div>
+  <div class="map-wrapper">
+    <google-map [options]="options" (mapClick)="handleClick($event)" [height]="height" [width]="width">
       <map-transit-layer></map-transit-layer>
     </google-map>
   </div>
