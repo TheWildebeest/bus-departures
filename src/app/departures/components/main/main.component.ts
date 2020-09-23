@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ExternalApisService } from '../../external-apis.service'
 
 import { TransportData, TransportDataMember } from './models/transportapi.interface';
+import customStyles from './googlemaps.styles';
 
 
 @Component({
@@ -12,7 +13,14 @@ import { TransportData, TransportDataMember } from './models/transportapi.interf
 })
 export class MainComponent implements OnInit {
 
-  // busStopData: TransportDataMember;
+  mapOptions: google.maps.MapOptions = {};
+  height: string = "100%";
+  width: string = "100%";
+
+  markerPosition: google.maps.LatLng;
+  markerOptions: google.maps.MarkerOptions;
+
+
   busStopName: any;
   departuresBoardListings: any = [
     { service: "" },
@@ -21,12 +29,7 @@ export class MainComponent implements OnInit {
   // latitude: number;
   // longitude: number;
 
-  @Input() options: google.maps.MapOptions;
 
-  @Input()
-  height: string = "100%";
-  @Input()
-  width: string = "100%";
 
   // @angular/google-maps readme:
   // https://github.com/angular/components/blob/master/src/google-maps/README.md
@@ -36,14 +39,19 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.options = {
+    this.mapOptions = {
       center: {
         lat: 51.4952,
         lng: -0.1439
       },
       zoom: 16,
       clickableIcons: false,
+      mapTypeId: 'roadmap',
+      styles: customStyles,
+      mapTypeControl: false,
+      streetViewControl: false
     }
+
   }
 
   // getBusStop(lat: number, lng: number) {
@@ -86,6 +94,20 @@ export class MainComponent implements OnInit {
     // this.longitude = event.latLng.lng();
     // console.log(event.latLng.lat());
     // console.log(event.latLng.lng());
+    this.markerPosition = event.latLng;
+    this.markerOptions = {
+      icon: {
+        url: 'assets/images/logo.png',
+        size: {
+          width: 25,
+          height: 25
+        },
+        scaledSize: {
+          width: 25,
+          height: 25
+        }
+      }
+    }
     this.getBusStopName(event.latLng.lat(), event.latLng.lng());
     this.getDepartures(event.latLng.lat(), event.latLng.lng());
     // this.getBusStop(this.latitude, this.longitude);

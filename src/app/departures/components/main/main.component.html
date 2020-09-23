@@ -1,6 +1,9 @@
 <main class="main-content">
   <div class="map-wrapper">
-    <google-map [options]="options" (mapClick)="handleClick($event)" [height]="height" [width]="width">
+    <google-map [options]="mapOptions" mapId="3f055c5d4d8ffa19" (mapClick)="handleClick($event)" [height]="height"
+      [width]="width">
+      <map-marker *ngIf="markerPosition" [position]="markerPosition" [options]="markerOptions">
+      </map-marker>
       <map-transit-layer></map-transit-layer>
     </google-map>
   </div>

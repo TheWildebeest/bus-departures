@@ -31,7 +31,8 @@ app-header {
     text-align: center;
 
     .omnibus-logo {
-      height: 10vh;
+      height: 9vh;
+      margin: 1vh;
     }
 
     h1 {
@@ -45,6 +46,10 @@ app-header {
 
   .red {
     color: $busred;
+  }
+
+  .orange {
+    color: orange;
   }
 }
 
