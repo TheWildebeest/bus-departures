@@ -1,6 +1,8 @@
 export interface TransportData {
-  acknowledgments: string;
+  acknowledgements: string;
   member: TransportDataMember[];
+  request_time: string;
+  source: string;
 }
 
 
@@ -12,5 +14,4 @@ export interface TransportDataMember {
   longitude: number;
   name: string;
   type: string;
-
 }
