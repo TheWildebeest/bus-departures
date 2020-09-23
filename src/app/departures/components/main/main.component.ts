@@ -14,7 +14,8 @@ import { TransportData, TransportDataMember } from './models/transportapi.interf
 })
 export class MainComponent implements OnInit {
 
-  busStopsData: TransportDataMember;
+  busStopData: TransportDataMember;
+  departuresBoardListings: any;
   latitude: number;
   longitude: number;
 
@@ -43,16 +44,25 @@ export class MainComponent implements OnInit {
     }
   }
 
-  getBusStops(lat: number, lng: number) {
-    this._externalApisService.getBusStops(lat, lng).subscribe(
+  getBusStop(lat: number, lng: number) {
+    this._externalApisService.getBusStop(lat, lng).subscribe(
       (data: TransportData) => {
-        this.busStopsData = data.member[0];
-        console.log("data:", data);
+        this.busStopData = data.member[0];
       },
       error => console.log(error),
-      () => console.log(this.busStopsData)
-    );
+      () => console.log("Success"))
   }
+
+  getDepartures(lat: number, lng: number) {
+    this._externalApisService.getDepartures(lat, lng).subscribe(
+      departuresBoardInfo => {
+        this.departuresBoardListings = departuresBoardInfo;
+        console.log(this.departuresBoardListings);
+      }
+    )
+  }
+
+
 
   moveMap(event: google.maps.MouseEvent) {
     this.options.center = (event.latLng.toJSON());
@@ -60,11 +70,13 @@ export class MainComponent implements OnInit {
 
   handleClick(event: google.maps.MouseEvent) {
     // event.preventDefault; doesn't stop default map behaviour
+    // adjust settings via googe-map element attributes
     this.latitude = event.latLng.lat();
     this.longitude = event.latLng.lng();
     console.log(event.latLng.lat());
     console.log(event.latLng.lng());
-    this.getBusStops(this.latitude, this.longitude);
+    this.getDepartures(this.latitude, this.longitude);
+    // this.getBusStop(this.latitude, this.longitude);
 
     // will probably need a forkJoin() here
 
