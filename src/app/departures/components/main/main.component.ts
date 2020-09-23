@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { ExternalApisService } from '../../external-apis.service'
 
@@ -11,8 +12,12 @@ import { TransportData, TransportDataMember } from './models/transportapi.interf
 })
 export class MainComponent implements OnInit {
 
-  busStopData: TransportDataMember;
-  departuresBoardListings: any;
+  // busStopData: TransportDataMember;
+  busStopName: any;
+  departuresBoardListings: any = [
+    { service: "" },
+    { service: "" }
+  ];
   // latitude: number;
   // longitude: number;
 
@@ -60,6 +65,14 @@ export class MainComponent implements OnInit {
     )
   }
 
+  getBusStopName(lat, lng) {
+    this._externalApisService.getAtcoCode(lat, lng).subscribe(
+      (dataMember: any) => {
+        this.busStopName = `Live departures for ${dataMember.name}`;
+      }
+    )
+  }
+
 
 
   // moveMap(event: google.maps.MouseEvent) {
@@ -73,6 +86,7 @@ export class MainComponent implements OnInit {
     // this.longitude = event.latLng.lng();
     // console.log(event.latLng.lat());
     // console.log(event.latLng.lng());
+    this.getBusStopName(event.latLng.lat(), event.latLng.lng());
     this.getDepartures(event.latLng.lat(), event.latLng.lng());
     // this.getBusStop(this.latitude, this.longitude);
 

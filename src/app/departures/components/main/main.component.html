@@ -6,22 +6,13 @@
   </div>
   <div class="departures-board-wrapper">
     <div class="bus-stop stop-name">
-      <h2>Live departures {{ busStopData? "for " + busStopData.name : "near you" }}</h2>
+      <h2 *ngIf="busStopName">{{ busStopName }}</h2>
+      <h2 *ngIf="!busStopName">Click the map to show live departures for the closest bus stop.</h2>
     </div>
-    <div class="bus-stop departure-listing">
-      <h3>1</h3>
-      <h3>Victoria</h3>
-      <h3>12:15</h3>
-    </div>
-    <div class="bus-stop departure-listing">
-      <h3>2</h3>
-      <h3>Victoria</h3>
-      <h3>12:15</h3>
-    </div>
-    <div class="bus-stop departure-listing">
-      <h3>3</h3>
-      <h3>Victoria</h3>
-      <h3>12:15</h3>
+    <div *ngFor="let departure of departuresBoardListings; let i = index" class="bus-stop departure-listing">
+      <h3>{{ departure.service }}</h3>
+      <h3>{{ departure.destination }}</h3>
+      <h3>{{ departure.departureTime }}</h3>
     </div>
   </div>
 </main>
