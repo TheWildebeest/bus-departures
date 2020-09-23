@@ -1,10 +1,27 @@
 <main class="main-content">
-  <div class="departures-board-wrapper">
-
-  </div>
   <div class="map-wrapper">
     <google-map [options]="options" (mapClick)="handleClick($event)" [height]="height" [width]="width">
       <map-transit-layer></map-transit-layer>
     </google-map>
+  </div>
+  <div class="departures-board-wrapper">
+    <div class="bus-stop stop-name">
+      <h2>Live departures {{ busStopData? "for " + busStopData.name : "near you" }}</h2>
+    </div>
+    <div class="bus-stop departure-listing">
+      <h3>1</h3>
+      <h3>Victoria</h3>
+      <h3>12:15</h3>
+    </div>
+    <div class="bus-stop departure-listing">
+      <h3>2</h3>
+      <h3>Victoria</h3>
+      <h3>12:15</h3>
+    </div>
+    <div class="bus-stop departure-listing">
+      <h3>3</h3>
+      <h3>Victoria</h3>
+      <h3>12:15</h3>
+    </div>
   </div>
 </main>

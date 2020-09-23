@@ -61,6 +61,37 @@ app-main {
 .departures-board-wrapper {
   position: relative;
   width: 80%;
-  margin: 5vh auto;
+  margin: 5vh 10%;
   height: 35vh;
+  box-shadow: $primary-shadow;
+}
+
+.departures-board-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2%;
+  background-color: #00000088;
+}
+
+.bus-stop {
+  margin: 2% 0 0;
+}
+
+.stop-name {
+  color: white;
+  text-align: center;
+}
+
+.departure-listing {
+  @include display_flex_row;
+  justify-content: space-between;
+  width: 80%;
+
+  h3 {
+    font-family: unibody;
+    color: orange;
+    width: 100%;
+  }
 }
