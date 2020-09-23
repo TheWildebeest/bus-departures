@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-
 import { ExternalApisService } from '../../external-apis.service'
 
 import { TransportData, TransportDataMember } from './models/transportapi.interface';
@@ -16,8 +13,8 @@ export class MainComponent implements OnInit {
 
   busStopData: TransportDataMember;
   departuresBoardListings: any;
-  latitude: number;
-  longitude: number;
+  // latitude: number;
+  // longitude: number;
 
   @Input() options: google.maps.MapOptions;
 
@@ -44,38 +41,39 @@ export class MainComponent implements OnInit {
     }
   }
 
-  getBusStop(lat: number, lng: number) {
-    this._externalApisService.getBusStop(lat, lng).subscribe(
-      (data: TransportData) => {
-        this.busStopData = data.member[0];
-      },
-      error => console.log(error),
-      () => console.log("Success"))
-  }
+  // getBusStop(lat: number, lng: number) {
+  //   this._externalApisService.getBusStop(lat, lng).subscribe(
+  //     (data: TransportData) => {
+  //       this.busStopData = data.member[0];
+  //     },
+  //     error => console.log(error),
+  //     () => console.log("Success"))
+  // }
 
   getDepartures(lat: number, lng: number) {
     this._externalApisService.getDepartures(lat, lng).subscribe(
-      departuresBoardInfo => {
+      (departuresBoardInfo: any) => {
         this.departuresBoardListings = departuresBoardInfo;
-        console.log(this.departuresBoardListings);
-      }
+      },
+      error => console.log("(@MainComponent): Error getting departures info from ExternalApisService: ", error),
+      () => console.log("(@MainComponent): Departures Board listings updated successfully.")
     )
   }
 
 
 
-  moveMap(event: google.maps.MouseEvent) {
-    this.options.center = (event.latLng.toJSON());
-  }
+  // moveMap(event: google.maps.MouseEvent) {
+  //   this.options.center = (event.latLng.toJSON());
+  // }
 
   handleClick(event: google.maps.MouseEvent) {
     // event.preventDefault; doesn't stop default map behaviour
     // adjust settings via googe-map element attributes
-    this.latitude = event.latLng.lat();
-    this.longitude = event.latLng.lng();
-    console.log(event.latLng.lat());
-    console.log(event.latLng.lng());
-    this.getDepartures(this.latitude, this.longitude);
+    // this.latitude = event.latLng.lat();
+    // this.longitude = event.latLng.lng();
+    // console.log(event.latLng.lat());
+    // console.log(event.latLng.lng());
+    this.getDepartures(event.latLng.lat(), event.latLng.lng());
     // this.getBusStop(this.latitude, this.longitude);
 
     // will probably need a forkJoin() here
