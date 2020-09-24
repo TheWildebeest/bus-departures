@@ -1,24 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ExternalApisService } from '../../external-apis.service'
 
-import { customStylesSnippet } from './map/googlemaps.snippets';
 import { DeparturesBoardListing, TransportDataMember } from './models/transportapi.interface';
-import { CustomMapOptions, CustomMarkerOptions, } from './models/googlemapscustom.interface';
 
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
 })
-export class MainComponent implements OnInit {
-
-  // map properties
-  mapOptions: CustomMapOptions;
-  mapHeight: string;
-  mapWidth: string;
-  markerPosition: google.maps.LatLng;
-  markerOptions: CustomMarkerOptions; // : google.maps.MarkerOptions;
+export class MainComponent {
 
   // departures board  properties
   busStopName: string = "Click the map to show live departures for the closest bus stop";
@@ -31,31 +22,13 @@ export class MainComponent implements OnInit {
 
   constructor(private _externalApisService: ExternalApisService) { }
 
-  ngOnInit(): void {
-    this.mapOptions = {
-      center: {
-        lat: 51.5124,
-        lng: -0.0902
-      },
-      clickableIcons: false,
-      mapTypeControl: false,
-      mapTypeId: 'roadmap',
-      streetViewControl: false,
-      styles: customStylesSnippet, // bug ?
-      zoom: 16,
-    }
-
+  // maps interaction
+  getMapLeftClickData(event: google.maps.MouseEvent): google.maps.MouseEvent {
+    console.log(event.latLng)
+    return event;
   }
 
-  // getBusStop(lat: number, lng: number) {
-  //   this._externalApisService.getBusStop(lat, lng).subscribe(
-  //     (data: TransportData) => {
-  //       this.busStopData = data.member[0];
-  //     },
-  //     error => console.log(error),
-  //     () => console.log("Success"))
-  // }
-
+  // departures board interaction
   getDepartures(lat: number, lng: number) {
     this._externalApisService.getDepartures(lat, lng).subscribe(
       (departuresBoardInfo) => {
@@ -75,39 +48,10 @@ export class MainComponent implements OnInit {
     )
   }
 
-
-
-  // moveMap(event: google.maps.MouseEvent) {
-  //   this.options.center = (event.latLng.toJSON());
-  // }
-
   handleClick(event: google.maps.MouseEvent) {
-    // event.preventDefault; doesn't stop default map behaviour
-    // adjust settings via googe-map element attributes
-    // this.latitude = event.latLng.lat();
-    // this.longitude = event.latLng.lng();
-    // console.log(event.latLng.lat());
-    // console.log(event.latLng.lng());
-    this.markerPosition = event.latLng;
-    this.markerOptions = {
-      icon: {
-        url: 'assets/images/logo.png',
-        size: {
-          width: 25,
-          height: 25,
-        },
-        scaledSize: {
-          width: 25,
-          height: 25,
-        }
-      }
-    }
     this.getBusStopName(event.latLng.lat(), event.latLng.lng());
     this.getDepartures(event.latLng.lat(), event.latLng.lng());
     // this.getBusStop(this.latitude, this.longitude);
-
-    // will probably need a forkJoin() here
-
   }
 
 }

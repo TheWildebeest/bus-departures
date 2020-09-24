@@ -11,7 +11,7 @@
   -->
 
   <!-- Refactor -->
-  <app-map></app-map>
+  <app-map (mapLeftClick)="getMapLeftClickData($event)"></app-map>
   <div class="departures-board-wrapper">
     <div class="bus-stop stop-name">
       <h2>{{ busStopName }}</h2>
