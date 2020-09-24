@@ -77,7 +77,8 @@ app-main {
   justify-content: flex-start;
   align-items: center;
   padding: 2%;
-  background-color: #00000088;
+  background-color: #212121;
+  overflow: auto;
 }
 
 .bus-stop {
@@ -97,6 +98,39 @@ app-main {
   h3 {
     font-family: unibody;
     color: orange;
-    width: 100%;
+    text-align: left;
+
+    &.bus-service {
+      width: 20%;
+    }
+
+    &.bus-destination {
+      width: 100%;
+    }
+
+    &.bus-depart-time {
+      width: 20%;
+      text-align: right;
+    }
   }
+}
+
+// img[src="https://maps.gstatic.com/mapfiles/transit/iw2/6/bus.png"]+span
+// {
+//   background: url(http://i.stack.imgur.com/8lcVw.png?s=32&g=1) no-repeat;
+//   background-size: 16px 16px;
+//   padding-left: 18px;
+// }
+div.gm-style-cc[draggable="false"] {
+  display: none;
+}
+
+img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"]
+{
+  display: none;
+}
+
+*[src="https://maps.gstatic.com/mapfiles/transit/iw2/6/bus.png"]
+{
+  display: none;
 }
