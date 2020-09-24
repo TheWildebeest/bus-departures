@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { ExternalApisService } from '../../external-apis.service'
 
-import { TransportData, TransportDataMember } from './models/transportapi.interface';
 import customStyles from './googlemaps.styles';
+import { DeparturesBoardListing, TransportDataMember, CustomMarkerOptions, CustomMapOptions } from './models/transportapi.interface';
 
 
 @Component({
@@ -13,18 +12,16 @@ import customStyles from './googlemaps.styles';
 })
 export class MainComponent implements OnInit {
 
-  mapOptions: google.maps.MapOptions = {};
-  height: string = "100%";
-  width: string = "100%";
-
+  mapOptions: CustomMapOptions;
+  mapHeight: string;
+  mapWidth: string;
   markerPosition: google.maps.LatLng;
-  markerOptions: google.maps.MarkerOptions;
+  markerOptions: CustomMarkerOptions; // : google.maps.MarkerOptions;
 
 
-  busStopName: any;
-  departuresBoardListings: any = [
-    { service: "" },
-    { service: "" }
+  busStopName: string = "Click the map to show live departures for the closest bus stop";
+  departuresBoardListings: DeparturesBoardListing[] = [
+    { service: "", destination: "", departureTime: "" },
   ];
   // latitude: number;
   // longitude: number;
@@ -34,22 +31,20 @@ export class MainComponent implements OnInit {
   // @angular/google-maps readme:
   // https://github.com/angular/components/blob/master/src/google-maps/README.md
 
-  constructor(
-    private _externalApisService: ExternalApisService
-  ) { }
+  constructor(private _externalApisService: ExternalApisService) { }
 
   ngOnInit(): void {
     this.mapOptions = {
       center: {
-        lat: 51.4952,
-        lng: -0.1439
+        lat: 51.5124,
+        lng: -0.0902
       },
-      zoom: 16,
       clickableIcons: false,
-      mapTypeId: 'roadmap',
-      styles: customStyles,
       mapTypeControl: false,
-      streetViewControl: false
+      mapTypeId: 'roadmap',
+      streetViewControl: false,
+      styles: customStyles, // bug ?
+      zoom: 16,
     }
 
   }
@@ -65,17 +60,18 @@ export class MainComponent implements OnInit {
 
   getDepartures(lat: number, lng: number) {
     this._externalApisService.getDepartures(lat, lng).subscribe(
-      (departuresBoardInfo: any) => {
+      (departuresBoardInfo) => {
         this.departuresBoardListings = departuresBoardInfo;
+        console.log(this.departuresBoardListings);
       },
       error => console.log("(@MainComponent): Error getting departures info from ExternalApisService: ", error),
       () => console.log("(@MainComponent): Departures Board listings updated successfully.")
     )
   }
 
-  getBusStopName(lat, lng) {
+  getBusStopName(lat: number, lng: number): void {
     this._externalApisService.getAtcoCode(lat, lng).subscribe(
-      (dataMember: any) => {
+      (dataMember: TransportDataMember) => {
         this.busStopName = `Live departures for ${dataMember.name}`;
       }
     )
@@ -100,11 +96,11 @@ export class MainComponent implements OnInit {
         url: 'assets/images/logo.png',
         size: {
           width: 25,
-          height: 25
+          height: 25,
         },
         scaledSize: {
           width: 25,
-          height: 25
+          height: 25,
         }
       }
     }

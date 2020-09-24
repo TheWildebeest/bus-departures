@@ -23,11 +23,11 @@ const styles = [
     elementType: 'all',
     stylers: [{ visibility: 'off' }]
   },
-  {
-    featureType: 'poi',
-    elementType: 'all',
-    stylers: [{ density: 'sparse' }]
-  },
+  // {
+  //   featureType: 'poi',
+  //   elementType: 'all',
+  //   stylers: [{ density: 'sparse' }]
+  // },
   {
     featureType: 'poi',
     elementType: 'labels.text.fill',
@@ -36,7 +36,7 @@ const styles = [
   {
     featureType: 'poi.park',
     elementType: 'geometry',
-    stylers: [{ color: '#263c3f' }]
+    stylers: [{ color: '#212121' }]
   },
   {
     featureType: 'poi.park',
@@ -51,7 +51,7 @@ const styles = [
   {
     featureType: 'road',
     elementType: 'geometry.stroke',
-    stylers: [{ color: '#212a37' }]
+    stylers: [{ color: '#664200' }]
   },
   {
     featureType: 'road',
@@ -74,14 +74,35 @@ const styles = [
     stylers: [{ color: '#f3d19c' }]
   },
   {
-    featureType: 'transit',
-    elementType: 'geometry',
-    stylers: [{ color: '#2f3948' }]
+    featureType: 'road.local',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#664200' }]
   },
   {
-    featureType: 'transit.station',
-    elementType: 'labels.text.fill',
-    stylers: [{ color: '#d59563' }]
+    featureType: 'road.arterial',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#996300' }]
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#ffa500' }]
+  },
+
+  {
+    featureType: 'road.local',
+    elementType: 'geometry.fill',
+    stylers: [{ color: '#666666' }]
+  },
+  {
+    featureType: 'road.arterial',
+    elementType: 'geometry.fill',
+    stylers: [{ color: '#414b55' }]
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry.fill',
+    stylers: [{ color: '#212b35' }]
   },
   {
     featureType: 'water',
@@ -102,6 +123,31 @@ const styles = [
     featureType: "landscape",
     elementType: "labels",
     stylers: [{ visibility: "off" }]
+  },
+  {
+    featureType: 'transit',
+    elementType: 'geometry',
+    stylers: [{ color: '#2f3948' }]
+  },
+  {
+    featureType: 'transit.station',
+    elementType: 'labels',
+    stylers: [{ visibility: 'on' }]
+  },
+  {
+    featureType: 'transit.station.bus',
+    elementType: 'labels.icon',
+    stylers: [
+      { visibility: 'on' },
+      { color: '#dc2521' }]
+  },
+  {
+    featureType: 'landscape.man_made.building',
+    elementType: 'geometry.stroke',
+    stylers: [
+      { visibility: 'on' },
+      { color: '#404040' },
+    ]
   }
 ]
 

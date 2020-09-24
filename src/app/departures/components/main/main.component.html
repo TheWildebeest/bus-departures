@@ -1,7 +1,7 @@
 <main class="main-content">
   <div class="map-wrapper">
-    <google-map [options]="mapOptions" mapId="3f055c5d4d8ffa19" (mapClick)="handleClick($event)" [height]="height"
-      [width]="width">
+    <google-map [options]="mapOptions" mapId="3f055c5d4d8ffa19" (mapClick)="handleClick($event)" height="100%"
+      width="100%">
       <map-marker *ngIf="markerPosition" [position]="markerPosition" [options]="markerOptions">
       </map-marker>
       <map-transit-layer></map-transit-layer>
@@ -9,13 +9,13 @@
   </div>
   <div class="departures-board-wrapper">
     <div class="bus-stop stop-name">
-      <h2 *ngIf="busStopName">{{ busStopName }}</h2>
-      <h2 *ngIf="!busStopName">Click the map to show live departures for the closest bus stop.</h2>
+      <h2>{{ busStopName }}</h2>
+      <!-- <h2 *ngIf="!busStopName">Click the map to show live departures for the closest bus stop.</h2> -->
     </div>
     <div *ngFor="let departure of departuresBoardListings; let i = index" class="bus-stop departure-listing">
-      <h3>{{ departure.service }}</h3>
-      <h3>{{ departure.destination }}</h3>
-      <h3>{{ departure.departureTime }}</h3>
+      <h3 class="bus-service">{{ departure.service }}</h3>
+      <h3 class="bus-destination">{{ departure.destination }}</h3>
+      <h3 class="bus-depart-time">{{ departure.departureTime }}</h3>
     </div>
   </div>
 </main>
