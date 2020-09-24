@@ -3,7 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ExternalApisService } from '../../external-apis.service'
 
 import customStyles from './googlemaps.styles';
-import { DeparturesBoardListing, TransportDataMember, CustomMarkerOptions, CustomMapOptions } from './models/transportapi.interface';
+import { DeparturesBoardListing, TransportDataMember } from './models/transportapi.interface';
+import { CustomMapOptions, CustomMarkerOptions, } from './models/googlemapscustom.interface';
 
 
 @Component({
@@ -12,21 +13,18 @@ import { DeparturesBoardListing, TransportDataMember, CustomMarkerOptions, Custo
 })
 export class MainComponent implements OnInit {
 
+  // map properties
   mapOptions: CustomMapOptions;
   mapHeight: string;
   mapWidth: string;
   markerPosition: google.maps.LatLng;
   markerOptions: CustomMarkerOptions; // : google.maps.MarkerOptions;
 
-
+  // departures board  properties
   busStopName: string = "Click the map to show live departures for the closest bus stop";
   departuresBoardListings: DeparturesBoardListing[] = [
     { service: "", destination: "", departureTime: "" },
   ];
-  // latitude: number;
-  // longitude: number;
-
-
 
   // @angular/google-maps readme:
   // https://github.com/angular/components/blob/master/src/google-maps/README.md

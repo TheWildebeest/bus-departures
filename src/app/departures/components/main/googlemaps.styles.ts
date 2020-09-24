@@ -1,4 +1,6 @@
-const styles = [
+import { CustomMapTypeStyle } from './models/googlemapscustom.interface'
+
+const customStyles: CustomMapTypeStyle[] = [
   { elementType: 'geometry', stylers: [{ color: '#212121' }] },
   { elementType: 'labels.text.stroke', stylers: [{ color: '#212121' }] },
   { elementType: 'labels.text.fill', stylers: [{ color: '#757575' }] },
@@ -151,4 +153,4 @@ const styles = [
   }
 ]
 
-export default styles;
+export default customStyles;
