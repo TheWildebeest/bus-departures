@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-departures-listings',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeparturesListingsComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  data: google.maps.MouseEvent;
 
-  ngOnInit(): void {
+  constructor(private _externalApisService: ExternalApisService) { }
+
+  ngOnChanges(data) {
+    console.log("@DeparturesListingsComponent: ngOnChanges called." + data)
   }
 
-}
+  getDepartures(lat: number, lng: number) {
+    this._externalApisService.getDepartures(lat, lng).subscribe(
+      (departuresBoardInfo) => {
+        this.departuresBoardListings = departuresBoardInfo;
+        console.log(this.departuresBoardListings);
+      },
+      error => console.log("(@MainComponent): Error getting departures info from ExternalApisService: ", error),
+      () => console.log("(@MainComponent): Departures Board listings updated successfully.")
+    )
+  }

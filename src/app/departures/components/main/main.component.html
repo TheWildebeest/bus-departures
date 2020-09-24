@@ -10,8 +10,10 @@
   </div>
   -->
 
-  <!-- Refactor -->
+  <!-- Refactored Map -->
   <app-map (mapLeftClick)="getMapLeftClickData($event)"></app-map>
+
+  <!-- Original messy component -->
   <div class="departures-board-wrapper">
     <div class="bus-stop stop-name">
       <h2>{{ busStopName }}</h2>
@@ -22,4 +24,9 @@
       <h3 class="bus-depart-time">{{ departure.departureTime }}</h3>
     </div>
   </div>
+  <!-- ----- -->
+
+  <!-- Refactored Departures listings component -->
+  <app-departures-listings [data]="dataFromMaps"></app-departures-listings>
+  <!-- ----- -->
 </main>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 
 import { ExternalApisService } from '../../external-apis.service'
 
@@ -10,6 +10,9 @@ import { DeparturesBoardListing, TransportDataMember } from './models/transporta
   templateUrl: './main.component.html',
 })
 export class MainComponent {
+
+  @Output()
+  dataFromMaps: google.maps.MouseEvent;
 
   // departures board  properties
   busStopName: string = "Click the map to show live departures for the closest bus stop";
@@ -25,6 +28,7 @@ export class MainComponent {
   // maps interaction
   getMapLeftClickData(event: google.maps.MouseEvent): google.maps.MouseEvent {
     console.log(event.latLng)
+    this.dataFromMaps = event;
     return event;
   }
 
