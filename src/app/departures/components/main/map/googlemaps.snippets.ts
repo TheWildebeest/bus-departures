@@ -1,6 +1,6 @@
-import { CustomMapTypeStyle } from './models/googlemapscustom.interface'
+import { CustomMapTypeStyle, CustomMarkerOptions } from '../models/googlemapscustom.interface'
 
-const customStyles: CustomMapTypeStyle[] = [
+export const customStylesSnippet: CustomMapTypeStyle[] = [
   { elementType: 'geometry', stylers: [{ color: '#212121' }] },
   { elementType: 'labels.text.stroke', stylers: [{ color: '#212121' }] },
   { elementType: 'labels.text.fill', stylers: [{ color: '#757575' }] },
@@ -153,4 +153,16 @@ const customStyles: CustomMapTypeStyle[] = [
   }
 ]
 
-export default customStyles;
+export const MarkerStylesSnippet: CustomMarkerOptions = {
+  icon: {
+    url: 'assets/images/logo.png',
+    size: {
+      width: 25,
+      height: 25,
+    },
+    scaledSize: {
+      width: 25,
+      height: 25,
+    }
+  }
+}

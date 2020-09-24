@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { ExternalApisService } from '../../external-apis.service'
 
-import customStyles from './googlemaps.styles';
+import { customStylesSnippet } from './map/googlemaps.snippets';
 import { DeparturesBoardListing, TransportDataMember } from './models/transportapi.interface';
 import { CustomMapOptions, CustomMarkerOptions, } from './models/googlemapscustom.interface';
 
@@ -41,7 +41,7 @@ export class MainComponent implements OnInit {
       mapTypeControl: false,
       mapTypeId: 'roadmap',
       streetViewControl: false,
-      styles: customStyles, // bug ?
+      styles: customStylesSnippet, // bug ?
       zoom: 16,
     }
 
