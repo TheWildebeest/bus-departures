@@ -9,7 +9,7 @@ export class SearchBoxComponent implements OnInit {
   searchLocation = new FormControl('London');
 
   @Input()
-  defaultSearchLocation;
+  defaultSearchLocation: FormControl;
 
   searchBoxOpen = false
   searchIcon = () => this.searchBoxOpen ? "✕" : "☰"
@@ -24,7 +24,7 @@ export class SearchBoxComponent implements OnInit {
   }
 
   resetSearchLocation() {
-    this.searchLocation = this.defaultSearchLocation;
+    this.searchLocation.setValue(this.defaultSearchLocation);
   }
 
 }
