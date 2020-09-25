@@ -19,6 +19,7 @@ export class SearchBoxComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.resetSearchLocation();
   }
 
   toggleSearching() {
