@@ -1,6 +1,11 @@
 <div class="search-box-wrapper">
-  <p (click)="this.toggleSearching()">{{ searchIcon() }}</p>
-  <label for="locationSearch" *ngIf="this.searchBoxOpen">Search locations
-    <input id="locationSearch" type="text" placeholder="Search places..." />
+  <p class="toggle-search-icon" (click)="this.toggleSearching()">{{ searchIcon() }}</p>
+  <label for="locationSearch" *ngIf="this.searchBoxOpen">Search locations:
+    <input id="locationSearch" type="text" [formControl]="searchLocation" />
   </label>
+  <div class="search-box-heading">
+    <p>Bus stops near </p>
+    <h3>{{ searchLocation.value }}</h3>
+  </div>
+  <input type="button" value="⟲" (click)="resetSearchLocation()" />
 </div>

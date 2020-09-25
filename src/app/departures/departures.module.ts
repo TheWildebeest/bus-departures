@@ -33,7 +33,10 @@ import { SearchBoxComponent } from './components/main/search-box/search-box.comp
   ],
   exports: [
     HeaderComponent,
-    MainComponent
+    MainComponent,
+    MapComponent,
+    DeparturesListingsComponent,
+    SearchBoxComponent
   ],
   providers: [
     ExternalApisService

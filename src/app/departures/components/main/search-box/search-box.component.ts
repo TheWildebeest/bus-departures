@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,10 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchBoxComponent implements OnInit {
   searchLocation = new FormControl('London');
+
+  @Input()
+  defaultSearchLocation;
+
   searchBoxOpen = false
   searchIcon = () => this.searchBoxOpen ? "✕" : "☰"
 
@@ -17,6 +21,10 @@ export class SearchBoxComponent implements OnInit {
 
   toggleSearching() {
     this.searchBoxOpen = !this.searchBoxOpen;
+  }
+
+  resetSearchLocation() {
+    this.searchLocation = this.defaultSearchLocation;
   }
 
 }
