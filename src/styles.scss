@@ -15,7 +15,6 @@ body {
   background-image: linear-gradient(#ffa50033, #ffa50033), linear-gradient(#ffffffdd, #ffffffdd),
     url("assets/images/background.jpg");
   min-height: 100vh;
-  width: 100vw;
 }
 // --reset--- //
 
@@ -26,7 +25,7 @@ app-header {
   top: 0;
   left: 0;
   height: 12vh;
-  width: 100vw;
+  width: 100%;
   background-color: variables.$busgrey;
   border-bottom: 10px solid variables.$busred;
 
@@ -38,9 +37,12 @@ app-header {
 
     .omnibus-logo {
       display: grid;
-      place-items: center;
-      height: 9vh;
-      margin: 1vh;
+      place-items: left;
+
+      > img {
+        height: 9vh;
+        margin-left: 1vh;
+      }
     }
 
     h1 {
