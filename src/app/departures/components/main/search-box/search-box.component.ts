@@ -3,13 +3,12 @@ import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search-box',
-  templateUrl: './search-box.component.html',
-  styleUrls: ['./search-box.component.scss']
+  templateUrl: './search-box.component.html'
 })
 export class SearchBoxComponent implements OnInit {
   searchLocation = new FormControl('London');
   searchBoxOpen = false
-  searchIcon = () => this.searchBoxOpen ? "❌" : "☰"
+  searchIcon = () => this.searchBoxOpen ? "✕" : "☰"
 
   constructor() { }
 
