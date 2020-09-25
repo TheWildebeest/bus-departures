@@ -1,15 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html'
 })
 export class SearchBoxComponent implements OnInit {
-  searchLocation = new FormControl('London');
+  @Input() defaultSearchLocation: FormControl;
 
-  @Input()
-  defaultSearchLocation: FormControl;
+  searchLocationForm = new FormGroup({
+    searchLocation: new FormControl('')
+  });
+
 
   searchBoxOpen = false
   searchIcon = () => this.searchBoxOpen ? "✕" : "☰"
@@ -24,7 +26,9 @@ export class SearchBoxComponent implements OnInit {
   }
 
   resetSearchLocation() {
-    this.searchLocation.setValue(this.defaultSearchLocation);
+    this.searchLocationForm.setValue({
+      searchLocation: this.defaultSearchLocation
+    });
   }
 
 }
