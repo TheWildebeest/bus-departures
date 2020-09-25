@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,13 +7,11 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class SearchBoxComponent implements OnInit {
   @Input() defaultSearchLocation: FormControl;
+  @Output() currentSearchLocation: EventEmitter<string> = new EventEmitter;
 
   searchLocationForm = new FormGroup({
     searchLocation: new FormControl('')
   });
-
-  currentLocation = () => this.searchLocationForm.get('searchLocation').value
-
 
   searchBoxOpen = false
   searchIcon = () => this.searchBoxOpen ? "✕" : "☰"
@@ -24,14 +22,22 @@ export class SearchBoxComponent implements OnInit {
     this.resetSearchLocation();
   }
 
-  toggleSearching() {
-    this.searchBoxOpen = !this.searchBoxOpen;
+  getCurrentLocation() {
+    return this.searchLocationForm.get('searchLocation').value;
   }
 
+  onSubmit() {
+    this.currentSearchLocation.emit()
+    console.log(this.getCurrentLocation())
+  }
   resetSearchLocation() {
     this.searchLocationForm.setValue({
       searchLocation: this.defaultSearchLocation
     });
+  }
+
+  toggleSearching() {
+    this.searchBoxOpen = !this.searchBoxOpen;
   }
 
 }
