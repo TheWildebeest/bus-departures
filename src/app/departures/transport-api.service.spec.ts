@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ExternalApisService } from './external-apis.service';
+import { ExternalApisService } from './transport-api.service';
 
 describe('ExternalApisService', () => {
   let service: ExternalApisService;

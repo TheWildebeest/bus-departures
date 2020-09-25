@@ -11,7 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
 
 // Services
-import { ExternalApisService } from './external-apis.service';
+import { ExternalApisService } from './transport-api.service';
 import { MapComponent } from './components/main/map/map.component';
 import { DeparturesListingsComponent } from './components/main/departures-listings/departures-listings.component'
 

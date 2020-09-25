@@ -1,7 +1,10 @@
-import { Component, Output } from '@angular/core';
+// Angular imports
+import { Component, OnChanges, Output } from '@angular/core';
 
-import { ExternalApisService } from '../../external-apis.service'
+// Services
+import { ExternalApisService } from '../../transport-api.service'
 
+// Interfaces
 import { DeparturesBoardListing, TransportDataMember } from './models/transportapi.interface';
 
 
@@ -11,10 +14,16 @@ import { DeparturesBoardListing, TransportDataMember } from './models/transporta
 })
 export class MainComponent {
 
+  // Data flow
   @Output()
   dataFromMaps: google.maps.MouseEvent;
+  @Output()
+  departuresListingsData: DeparturesBoardListing[] = [
+    { service: "", destination: "", departureTime: "" },
+  ];
 
-  // departures board  properties
+  // Departures listings properties
+  @Output()
   busStopName: string = "Click the map to show live departures for the closest bus stop";
   departuresBoardListings: DeparturesBoardListing[] = [
     { service: "", destination: "", departureTime: "" },

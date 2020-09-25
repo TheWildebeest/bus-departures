@@ -1,1 +1,10 @@
-<p>departures-listings works!</p>
+<div class="departures-board-wrapper">
+  <div class="bus-stop stop-name">
+    <h2>{{ busStopName }}</h2>
+  </div>
+  <div *ngFor="let departure of departuresBoardListings; let i = index" class="bus-stop departure-listing">
+    <h3 class="bus-service">{{ departure.service }}</h3>
+    <h3 class="bus-destination">{{ departure.destination }}</h3>
+    <h3 class="bus-depart-time">{{ departure.departureTime }}</h3>
+  </div>
+</div>
