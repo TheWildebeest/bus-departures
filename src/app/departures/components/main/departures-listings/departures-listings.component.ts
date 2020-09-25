@@ -10,8 +10,6 @@ export class DeparturesListingsComponent implements OnChanges {
 
 
   @Input()
-  data: google.maps.MouseEvent;
-  @Input()
   departuresBoardListings: DeparturesBoardListing;
   @Input()
   busStopName: string

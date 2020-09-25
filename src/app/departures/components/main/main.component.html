@@ -13,7 +13,7 @@
   <!-- Refactored Map -->
   <app-map (mapLeftClick)="getMapLeftClickData($event)"></app-map>
 
-  <!-- Original messy component -->
+  <!-- Original messy Departures listings component -->
   <div class="departures-board-wrapper">
     <div class="bus-stop stop-name">
       <h2>{{ busStopName }}</h2>
@@ -27,6 +27,7 @@
   <!-- ----- -->
 
   <!-- Refactored Departures listings component -->
-  <app-departures-listings [busStopName]="busStopName" [data]="dataFromMaps"></app-departures-listings>
+  <app-departures-listings [busStopName]="busStopName" [departuresBoardListings]="departuresBoardListings">
+  </app-departures-listings>
   <!-- ----- -->
 </main>

@@ -35,7 +35,8 @@ export class MainComponent {
   getMapLeftClickData(event: google.maps.MouseEvent): google.maps.MouseEvent {
     console.log(event.latLng)
     this.dataFromMaps = event;
-    this.getDepartures(event.latLng)
+    this.getDepartures(event.latLng);
+    this.getBusStopName(event.latLng);
     return event;
   }
 
@@ -51,17 +52,18 @@ export class MainComponent {
     )
   }
 
-  getBusStopName(lat: number, lng: number): void {
-    this._externalApisService.getAtcoCode(lat, lng).subscribe(
+  getBusStopName(latLng: google.maps.LatLng): void {
+    this._externalApisService.getAtcoCode(latLng.lat(), latLng.lng()).subscribe(
       (dataMember: TransportDataMember) => {
         this.busStopName = `Live departures for ${dataMember.name}`;
+        console.log(this.busStopName)
       }
     )
   }
 
   handleClick(event: google.maps.MouseEvent) {
     this.getBusStopName(event.latLng.lat(), event.latLng.lng());
-    this.getDepartures(event.latLng); s
+    this.getDepartures(event.latLng);
     // this.getBusStop(this.latitude, this.longitude);
   }
 
