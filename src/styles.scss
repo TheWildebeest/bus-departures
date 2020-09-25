@@ -1,5 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-@import "./variables.module";
+@use "./variables";
 
 * {
   margin: 0;
@@ -16,13 +15,13 @@ body {
 }
 
 app-header {
-  @include display_flex_row;
+  @include variables.display_flex_row;
   top: 0;
   left: 0;
   height: 12vh;
   width: 100vw;
-  background-color: $busgrey;
-  border-bottom: 10px solid $busred;
+  background-color: variables.$busgrey;
+  border-bottom: 10px solid variables.$busred;
 
   .app-header {
     width: 100%;
@@ -45,7 +44,7 @@ app-header {
   }
 
   .red {
-    color: $busred;
+    color: variables.$busred;
   }
 
   .orange {
@@ -68,7 +67,7 @@ app-main {
   width: 80%;
   margin: 5vh 10%;
   height: 35vh;
-  box-shadow: $primary-shadow;
+  box-shadow: variables.$primary-shadow;
 }
 
 .departures-board-wrapper {
@@ -91,7 +90,7 @@ app-main {
 }
 
 .departure-listing {
-  @include display_flex_row;
+  @include variables.display_flex_row;
   justify-content: space-between;
   width: 80%;
 
