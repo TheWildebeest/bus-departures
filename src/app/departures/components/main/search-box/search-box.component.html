@@ -1,1 +1,4 @@
-<p>search-box works!</p>
+<p (click)="this.toggleSearching()">{{ searchIcon() }}</p>
+<label for="locationSearch" *ngIf="this.searchBoxOpen">Search locations
+  <input id="locationSearch" type="text" placeholder="Search places..." />
+</label>
