@@ -1,5 +1,5 @@
 // Angular imports
-import { Component, OnChanges, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 // Services
 import { ExternalApisService } from '../../transport-api.service'
@@ -16,9 +16,7 @@ export class MainComponent {
 
   // Data flow
   dataFromMaps: google.maps.MouseEvent;
-  departuresListingsData: DeparturesBoardListing[] = [
-    { service: "", destination: "", departureTime: "" },
-  ];
+  mapOptions: google.maps.MapOptions
 
   // Departures listings properties
   busStopName: string = "Click the map to show live departures for the closest bus stop";
@@ -42,6 +40,9 @@ export class MainComponent {
 
   // departures board interaction
   getDepartures(latLng: google.maps.LatLng) {
+    this.departuresBoardListings = [
+      { service: "", destination: "", departureTime: "" },
+    ];
     this._externalApisService.getDepartures(latLng.lat(), latLng.lng()).subscribe(
       (departuresBoardInfo) => {
         this.departuresBoardListings = departuresBoardInfo;
@@ -62,7 +63,7 @@ export class MainComponent {
   }
 
   handleClick(event: google.maps.MouseEvent) {
-    this.getBusStopName(event.latLng.lat(), event.latLng.lng());
+    this.getBusStopName(event.latLng);
     this.getDepartures(event.latLng);
     // this.getBusStop(this.latitude, this.longitude);
   }

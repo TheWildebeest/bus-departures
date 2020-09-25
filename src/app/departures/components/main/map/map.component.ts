@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CustomMapOptions, CustomMarkerOptions } from '../models/googlemapscustom.interface';
 import { customStylesSnippet, MarkerStylesSnippet } from './googlemaps.snippets';
 
@@ -9,9 +9,8 @@ import { customStylesSnippet, MarkerStylesSnippet } from './googlemaps.snippets'
 })
 export class MapComponent implements OnInit {
 
+  @Input()
   mapOptions: CustomMapOptions;
-  mapHeight: string;
-  mapWidth: string;
   markerOptions: CustomMarkerOptions; // : google.maps.MarkerOptions;
 
   @Output()
@@ -33,7 +32,7 @@ export class MapComponent implements OnInit {
       streetViewControl: false,
       styles: customStylesSnippet, // bug ?
       zoom: 16,
-    }
+    } // this should be an output from here, fired in parent
 
   }
 
