@@ -14,11 +14,11 @@ export class DeparturesListingsComponent implements OnChanges {
   @Input()
   departuresBoardListings: DeparturesBoardListing;
   @Input()
-  busStopName
+  busStopName: string
 
   constructor() { }
 
-  ngOnChanges(data) {
-    console.log("@DeparturesListingsComponent: ngOnChanges called." + data)
+  ngOnChanges() {
+    console.log("@DeparturesListingsComponent: ngOnChanges called.")
   }
 }

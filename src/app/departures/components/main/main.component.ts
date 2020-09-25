@@ -15,15 +15,12 @@ import { DeparturesBoardListing, TransportDataMember } from './models/transporta
 export class MainComponent {
 
   // Data flow
-  @Output()
   dataFromMaps: google.maps.MouseEvent;
-  @Output()
   departuresListingsData: DeparturesBoardListing[] = [
     { service: "", destination: "", departureTime: "" },
   ];
 
   // Departures listings properties
-  @Output()
   busStopName: string = "Click the map to show live departures for the closest bus stop";
   departuresBoardListings: DeparturesBoardListing[] = [
     { service: "", destination: "", departureTime: "" },
@@ -38,12 +35,13 @@ export class MainComponent {
   getMapLeftClickData(event: google.maps.MouseEvent): google.maps.MouseEvent {
     console.log(event.latLng)
     this.dataFromMaps = event;
+    this.getDepartures(event.latLng)
     return event;
   }
 
   // departures board interaction
-  getDepartures(lat: number, lng: number) {
-    this._externalApisService.getDepartures(lat, lng).subscribe(
+  getDepartures(latLng: google.maps.LatLng) {
+    this._externalApisService.getDepartures(latLng.lat(), latLng.lng()).subscribe(
       (departuresBoardInfo) => {
         this.departuresBoardListings = departuresBoardInfo;
         console.log(this.departuresBoardListings);
@@ -63,7 +61,7 @@ export class MainComponent {
 
   handleClick(event: google.maps.MouseEvent) {
     this.getBusStopName(event.latLng.lat(), event.latLng.lng());
-    this.getDepartures(event.latLng.lat(), event.latLng.lng());
+    this.getDepartures(event.latLng); s
     // this.getBusStop(this.latitude, this.longitude);
   }
 
