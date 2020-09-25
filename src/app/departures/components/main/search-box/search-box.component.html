@@ -8,7 +8,7 @@
   <div class="search-box-heading">
     <p>Bus stops near </p>
     <h3>
-      {{ searchLocationForm.value | json }}
+      {{ currentLocation() }}
     </h3>
   </div>
   <input class="search-box-reset-button" type="button" value="⟲" (click)="resetSearchLocation()" />

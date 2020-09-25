@@ -12,6 +12,8 @@ export class SearchBoxComponent implements OnInit {
     searchLocation: new FormControl('')
   });
 
+  currentLocation = () => this.searchLocationForm.get('searchLocation').value
+
 
   searchBoxOpen = false
   searchIcon = () => this.searchBoxOpen ? "✕" : "☰"
