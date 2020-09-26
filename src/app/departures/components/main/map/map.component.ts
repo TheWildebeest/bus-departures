@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CustomMapOptions, CustomMarkerOptions } from '../models/googlemapscustom.interface';
-import { customStylesSnippet, MarkerStylesSnippet } from './googlemaps.snippets';
+import { customStylesSnippet, markerStylesSnippet } from './googlemaps.snippets';
 
 @Component({
   selector: 'app-map',
@@ -39,7 +39,7 @@ export class MapComponent implements OnInit {
   handleClick(event: google.maps.MouseEvent) {
     // console.log(event.latLng);
     this.markerPosition = event.latLng;
-    this.markerOptions = MarkerStylesSnippet;
+    this.markerOptions = markerStylesSnippet;
     this.mapLeftClick.emit(event);
   }
 }

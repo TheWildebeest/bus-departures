@@ -1,4 +1,5 @@
 <div class="map-wrapper">
+
   <google-map [options]="mapOptions" (mapClick)="handleClick($event)" height="100%" width="100%">
     <map-marker *ngIf="markerPosition" [position]="markerPosition" [options]="markerOptions">
     </map-marker>

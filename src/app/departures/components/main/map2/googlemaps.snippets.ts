@@ -166,3 +166,16 @@ export const markerStylesSnippet: CustomMarkerOptions = {
     }
   }
 }
+
+export const mapOptions = {
+  center: {
+    lat: 51.5124,
+    lng: -0.0902
+  },
+  clickableIcons: false,
+  mapTypeControl: false,
+  mapTypeId: 'roadmap',
+  streetViewControl: false,
+  styles: customStylesSnippet, // bug ?
+  zoom: 16,
+} // this should be an output from here, fired in parent
