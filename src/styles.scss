@@ -177,7 +177,7 @@ app-main {
 
 // Map ---/
 
-.map-wrapper {
+#map {
   position: relative;
   width: 80%;
   margin: 5vh 10%;
@@ -248,9 +248,3 @@ img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"]
 }
 
 // --departures-listings--- //
-
-#map {
-  height: 40vh;
-  width: 80%;
-  margin: auto;
-}
