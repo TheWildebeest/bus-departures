@@ -4,14 +4,11 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
-// Other Modules
-import { GoogleMapsModule } from '@angular/google-maps'
 
 // Components
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
 import { MapComponent } from './components/main/map/map.component';
-import { MapComponentTwo } from './components/main/map2/map.component';
 
 // Services
 import { ExternalApisService } from './transport-api.service';
@@ -24,21 +21,18 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     HeaderComponent,
     MainComponent,
     MapComponent,
-    MapComponentTwo,
     DeparturesListingsComponent,
     SearchBoxComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    GoogleMapsModule,
     ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
     MainComponent,
     MapComponent,
-    MapComponentTwo,
     DeparturesListingsComponent,
     SearchBoxComponent
   ],

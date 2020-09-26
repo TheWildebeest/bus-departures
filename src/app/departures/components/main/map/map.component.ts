@@ -1,45 +1,62 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { CustomMapOptions, CustomMarkerOptions } from '../models/googlemapscustom.interface';
-import { customStylesSnippet, markerStylesSnippet } from './googlemaps.snippets';
+// Angular Core imports
+
+import {
+  Component, AfterViewInit, ViewChild,
+  EventEmitter, ElementRef, Output
+}
+  from '@angular/core';
+
+// Custom imports
+import { mapOptions } from './googlemaps.snippets';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements AfterViewInit {
 
-  @Input()
-  mapOptions: CustomMapOptions;
-  markerOptions: CustomMarkerOptions; // : google.maps.MarkerOptions;
-
-  @Output()
-  markerPosition: google.maps.LatLng;
+  // DATA FLOW //
   @Output()
   mapLeftClick: EventEmitter<google.maps.MouseEvent> = new EventEmitter();
 
-  constructor() { }
+  // @Output()
+  // markerPosition: google.maps.LatLng;
 
-  ngOnInit(): void {
-    this.mapOptions = {
-      center: {
-        lat: 51.5124,
-        lng: -0.0902
-      },
-      clickableIcons: false,
-      mapTypeControl: false,
-      mapTypeId: 'roadmap',
-      streetViewControl: false,
-      styles: customStylesSnippet, // bug ?
-      zoom: 16,
-    } // this should be an output from here, fired in parent
+  // PROPERTIES //
 
+  mapObject: google.maps.Map;
+
+  // Give the component access to the DOM node:
+  @ViewChild('mapContainer', { static: false }) mapNode: ElementRef;
+
+  ngAfterViewInit() {
+    this.initMap();
   }
 
-  handleClick(event: google.maps.MouseEvent) {
-    // console.log(event.latLng);
-    this.markerPosition = event.latLng;
-    this.markerOptions = markerStylesSnippet;
-    this.mapLeftClick.emit(event);
+  // METHODS //
+
+  // Map initializer function
+  initMap() {
+    this.mapObject = new google.maps.Map(this.mapNode.nativeElement, mapOptions);
+    new google.maps.TransitLayer().setMap(this.mapObject);
+    this.mapObject.addListener<"click">('click', (MouseEvent: google.maps.MouseEvent) => {
+      this.handleMapLeftClick(MouseEvent);
+    });
   }
+
+  handleMapLeftClick(MouseEvent: google.maps.MouseEvent) {
+    this.mapLeftClick.emit(MouseEvent);
+    console.log(MouseEvent);
+    // this.markerPosition = event.latLng;
+    // this.markerOptions = markerStylesSnippet;
+  }
+
+  placeMarker(event: google.maps.MouseEvent) {
+    new google.maps.Marker({
+      position: event.latLng,
+      map: this.mapObject
+    });
+    this.mapObject.panTo(event.latLng);
+  }
+
 }
