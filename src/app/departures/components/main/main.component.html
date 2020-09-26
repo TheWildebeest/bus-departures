@@ -1,6 +1,6 @@
 <main class="main-content">
   <!-- <app-map (mapLeftClick)="getMapLeftClickData($event)"></app-map> -->
-  <app-map-two></app-map-two>
+  <app-map-two (mapLeftClick)="getMapLeftClickData($event)"></app-map-two>
   <app-departures-listings [busStopName]="busStopName" [departuresBoardListings]="departuresBoardListings">
   </app-departures-listings>
 </main>

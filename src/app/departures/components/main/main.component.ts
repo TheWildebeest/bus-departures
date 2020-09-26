@@ -16,7 +16,6 @@ export class MainComponent {
 
   // Data flow
   dataFromMaps: google.maps.MouseEvent;
-  mapOptions: google.maps.MapOptions
 
   // Departures listings properties
   busStopName: string = "Click the map to show live departures for the closest bus stop";
