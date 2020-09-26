@@ -1,0 +1,15 @@
+<div class="search-box-wrapper">
+  <div class="search-box-control">
+    <p class="toggle-search-icon" (click)="this.toggleSearching()">{{ searchIcon() }}</p>
+  </div>
+  <form [formGroup]="searchLocationForm" (ngSubmit)="onSubmit($event)" class="search-box-form"
+    *ngIf="this.searchBoxOpen">
+    <div class="search-box-field">
+      <input id="pac-input" type="text" formControlName="searchLocation">
+    </div>
+    <div class="search-box-heading">
+      <p>Bus stops near <strong>{{ getCurrentLocation() }}</strong></p>
+    </div>
+    <input class="search-box-reset-button" type="button" value="⟲" (click)="resetSearchLocation()" />
+  </form>
+</div>

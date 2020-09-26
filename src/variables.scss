@@ -1,6 +1,7 @@
 $busred: #dc2521;
 $busgrey: #414b55;
 $primary-shadow: 5px 5px 0px $busgrey;
+$soft-shadow: 5px 5px 3px $busgrey;
 
 @font-face {
   font-family: "unibody";
@@ -21,4 +22,13 @@ $primary-shadow: 5px 5px 0px $busgrey;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

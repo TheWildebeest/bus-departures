@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search-box',
@@ -7,16 +7,16 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class SearchBoxComponent implements OnInit {
   @Input() defaultSearchLocation: FormControl;
-  @Output() currentSearchLocation: EventEmitter<string> = new EventEmitter;
+  @Output() currentSearchLocation: EventEmitter<any> = new EventEmitter;
 
-  searchLocationForm = new FormGroup({
-    searchLocation: new FormControl('')
+  searchLocationForm = this.formBuilder.group({
+    searchLocation: ''
   });
 
   searchBoxOpen = false
   searchIcon = () => this.searchBoxOpen ? "✕" : "☰"
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.resetSearchLocation();
@@ -26,13 +26,13 @@ export class SearchBoxComponent implements OnInit {
     return this.searchLocationForm.get('searchLocation').value;
   }
 
-  onSubmit() {
-    this.currentSearchLocation.emit()
+  onSubmit(event: EventEmitter<any>) {
+    this.currentSearchLocation.emit(`${event}`)
     console.log(this.getCurrentLocation())
   }
   resetSearchLocation() {
     this.searchLocationForm.setValue({
-      searchLocation: this.defaultSearchLocation
+      searchLocation: this.defaultSearchLocation.value
     });
   }
 

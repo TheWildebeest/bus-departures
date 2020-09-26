@@ -10,18 +10,21 @@ import { GoogleMapsModule } from '@angular/google-maps'
 // Components
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
+import { MapComponent } from './components/main/map/map.component';
+import { MapComponentTwo } from './components/main/map2/map.component';
 
 // Services
 import { ExternalApisService } from './transport-api.service';
-import { MapComponent } from './components/main/map/map.component';
 import { DeparturesListingsComponent } from './components/main/departures-listings/departures-listings.component';
-import { SearchBoxComponent } from './components/main/search-box/search-box.component'
+import { SearchBoxComponent } from './components/search-box/search-box.component';
+
 
 @NgModule({
   declarations: [
     HeaderComponent,
     MainComponent,
     MapComponent,
+    MapComponentTwo,
     DeparturesListingsComponent,
     SearchBoxComponent
   ],
@@ -35,6 +38,7 @@ import { SearchBoxComponent } from './components/main/search-box/search-box.comp
     HeaderComponent,
     MainComponent,
     MapComponent,
+    MapComponentTwo,
     DeparturesListingsComponent,
     SearchBoxComponent
   ],

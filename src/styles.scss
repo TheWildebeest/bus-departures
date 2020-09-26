@@ -21,15 +21,16 @@ body {
 // Header ---
 
 app-header {
-  @include variables.display_flex_row;
-  top: 0;
-  left: 0;
-  height: 12vh;
-  width: 100%;
-  background-color: variables.$busgrey;
-  border-bottom: 10px solid variables.$busred;
-
   .app-header {
+    padding: 1vh;
+    @include variables.display_flex_row;
+    align-items: flex-start;
+    top: 0;
+    left: 0;
+    height: 12vh;
+    width: 100%;
+    background-color: variables.$busgrey;
+    border-bottom: 2vh solid variables.$busred;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
@@ -40,13 +41,20 @@ app-header {
       place-items: left;
 
       > img {
-        height: 9vh;
-        margin-left: 1vh;
+        width: 8vh;
       }
     }
 
     h1 {
-      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 8vh;
+      line-height: 8vh;
+
+      > * {
+        white-space: pre-wrap;
+      }
     }
   }
 
@@ -80,30 +88,88 @@ app-main {
 // Search Box --- //
 
 .search-box-wrapper {
-  font-size: 1.2em;
-  top: 8vh;
-  left: 0;
-  width: 80%;
-  height: 10vh;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 5vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  font-size: 1.4em;
+  width: 100%;
 
-  .toggle-search-icon {
-    margin-right: 10%;
+  .search-box-control {
+    display: grid;
+    place-items: center;
+    height: 8vh;
+    width: 100%;
+    font-size: 2em;
+    color: orange;
+
+    .toggle-search-icon:hover {
+      cursor: pointer;
+    }
   }
 
-  .search-box-heading {
-    width: 30%;
-  }
+  .search-box-form {
+    animation: fadein 0.5s 1;
+    background-color: #ffffffcc;
+    padding: 20%;
+    width: 80vw;
+    height: 40vh;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    right: 100%;
+    top: 130%;
+    box-shadow: variables.$primary-shadow;
 
-  .search-box-reset-button {
-    width: 5%;
-    height: 50%;
-    margin: 0 2%;
+    .search-box-field {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      width: 40%;
+
+      > label {
+        font-size: 1em;
+      }
+
+      > input {
+        outline: none;
+        border: none;
+        box-shadow: variables.$soft-shadow;
+        width: 100%;
+        height: 30%;
+        font-size: 1.2em;
+        padding: 10% 6%;
+      }
+    }
+
+    .search-box-heading {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 40%;
+
+      > p {
+        width: 100%;
+        text-align: left;
+        overflow: hidden;
+      }
+    }
+
+    .search-box-reset-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      outline: none;
+      border: none;
+      background-color: #ffa500;
+      color: #212121;
+
+      &:hover {
+        background-color: #d18800;
+      }
+    }
   }
 }
 
@@ -182,3 +248,9 @@ img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"]
 }
 
 // --departures-listings--- //
+
+#map {
+  height: 40vh;
+  width: 80%;
+  margin: auto;
+}
