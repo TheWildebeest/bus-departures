@@ -11,7 +11,6 @@ import { GoogleMapsModule } from '@angular/google-maps'
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
 import { MapComponent } from './components/main/map/map.component';
-import { MapComponentTwo } from './components/main/map2/map.component';
 
 // Services
 import { ExternalApisService } from './transport-api.service';
@@ -24,7 +23,6 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     HeaderComponent,
     MainComponent,
     MapComponent,
-    MapComponentTwo,
     DeparturesListingsComponent,
     SearchBoxComponent
   ],
@@ -38,7 +36,6 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     HeaderComponent,
     MainComponent,
     MapComponent,
-    MapComponentTwo,
     DeparturesListingsComponent,
     SearchBoxComponent
   ],

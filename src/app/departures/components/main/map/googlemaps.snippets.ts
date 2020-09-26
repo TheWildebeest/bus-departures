@@ -153,7 +153,7 @@ export const customStylesSnippet: CustomMapTypeStyle[] = [
   }
 ]
 
-export const MarkerStylesSnippet: CustomMarkerOptions = {
+export const markerStylesSnippet: CustomMarkerOptions = {
   icon: {
     url: 'assets/images/logo.png',
     size: {
