@@ -5,6 +5,7 @@
   <h1>
     <span class="white">OMNIBUS</span>&#160;<span class="orange">LIVE</span>
   </h1>
-  <app-search-box [defaultSearchLocation]="defaultSearchLocation">
-  </app-search-box>
+  <div class="search-box-control">
+    <p class="toggle-search-icon" (click)="this.handleClick()">{{ searchIcon }}</p>
+  </div>
 </header>

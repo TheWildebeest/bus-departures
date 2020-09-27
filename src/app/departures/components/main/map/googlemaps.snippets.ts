@@ -172,3 +172,14 @@ export const busMapOptions: google.maps.MapOptions = {
   zoom: 16,
   backgroundColor: '#212121'
 } // this should be an output from here, fired in parent
+
+const mapsSearchLocationBounds: google.maps.LatLngBounds = new google.maps.LatLngBounds(
+  { lat: 51.27693, lng: -0.55852 },
+  { lat: 51.74019, lng: 0.28605 }
+)
+
+// export const mapsSearchLocationBounds: google.maps.LatLngBounds = new google.maps.LatLngBounds(
+//   new google.maps.LatLng(51.27693, -0.55852),
+//   new google.maps.LatLng(51.74019, 0.28605)
+// )
+export const mapSearchBoundsOptions = { bounds: mapsSearchLocationBounds }

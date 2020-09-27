@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit {
-  defaultSearchLocation: FormControl = new FormControl('London');
+export class HeaderComponent {
+  @Input()
+  defaultSearchLocation: FormControl;
+  @Input()
+  searchIcon: string;
+  @Output()
+  searchBoxToggled: EventEmitter<any> = new EventEmitter();
+
 
   constructor() { }
 
-  ngOnInit(): void {
+  handleClick() {
+    this.searchBoxToggled.emit()
   }
 
 }

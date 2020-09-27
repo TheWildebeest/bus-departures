@@ -87,36 +87,42 @@ app-main {
 
 // Search Box --- //
 
-.search-box-wrapper {
-  position: relative;
-  z-index: 1;
-  font-size: 1.4em;
+.search-box-control {
+  display: grid;
+  place-items: center;
   width: 100%;
+  height: 8vh;
+  line-height: 8vh;
+  color: orange;
 
-  .search-box-control {
-    display: grid;
-    place-items: center;
-    height: 8vh;
-    width: 100%;
-    font-size: 2em;
-    color: orange;
+  .toggle-search-icon {
+    font-size: 3em;
 
-    .toggle-search-icon:hover {
+    &:hover {
       cursor: pointer;
     }
   }
+}
+
+.search-box-wrapper {
+  position: fixed;
+  top: 14vh;
+  right: 5vw;
+  z-index: 1;
+  font-size: 1.4em;
+  width: 90vw;
 
   .search-box-form {
     animation: fadein 0.5s 1;
     background-color: #ffffffcc;
     padding: 20%;
-    width: 80vw;
+    width: 100%;
     height: 40vh;
     display: flex;
     justify-content: space-between;
     position: absolute;
-    right: 100%;
-    top: 130%;
+    left: 0;
+    top: 0;
     box-shadow: variables.$primary-shadow;
 
     .search-box-field {

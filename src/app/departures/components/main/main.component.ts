@@ -1,5 +1,6 @@
 // Angular imports
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 // Services
 import { ExternalApisService } from '../../transport-api.service'
@@ -15,6 +16,10 @@ import { DeparturesBoardListing, TransportDataMember } from './models/transporta
 export class MainComponent {
 
   // Data flow
+  @Input()
+  defaultSearchLocation: FormControl;
+  @Input()
+  searchBoxOpen: boolean;
   dataFromMaps: google.maps.MouseEvent;
 
   // Departures listings properties
@@ -22,6 +27,7 @@ export class MainComponent {
   departuresBoardListings: DeparturesBoardListing[] = [
     { service: "", destination: "", departureTime: "" },
   ];
+
 
   // @angular/google-maps readme:
   // https://github.com/angular/components/blob/master/src/google-maps/README.md
