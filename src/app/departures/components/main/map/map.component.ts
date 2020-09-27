@@ -7,7 +7,7 @@ import {
   from '@angular/core';
 
 // Custom imports
-import { mapOptions } from './googlemaps.snippets';
+import { busMapOptions, busMarkerOptions } from './googlemaps.snippets';
 
 @Component({
   selector: 'app-map',
@@ -23,8 +23,8 @@ export class MapComponent implements AfterViewInit {
   // markerPosition: google.maps.LatLng;
 
   // PROPERTIES //
-
   mapObject: google.maps.Map;
+  markerObject: google.maps.Marker;
 
   // Give the component access to the DOM node:
   @ViewChild('mapContainer', { static: false }) mapNode: ElementRef;
@@ -37,7 +37,7 @@ export class MapComponent implements AfterViewInit {
 
   // Map initializer function
   initMap() {
-    this.mapObject = new google.maps.Map(this.mapNode.nativeElement, mapOptions);
+    this.mapObject = new google.maps.Map(this.mapNode.nativeElement, busMapOptions);
     new google.maps.TransitLayer().setMap(this.mapObject);
     this.mapObject.addListener<"click">('click', (MouseEvent: google.maps.MouseEvent) => {
       this.handleMapLeftClick(MouseEvent);
@@ -47,15 +47,14 @@ export class MapComponent implements AfterViewInit {
   handleMapLeftClick(MouseEvent: google.maps.MouseEvent) {
     this.mapLeftClick.emit(MouseEvent);
     console.log(MouseEvent);
+    this.placeMarker(MouseEvent);
     // this.markerPosition = event.latLng;
     // this.markerOptions = markerStylesSnippet;
   }
 
   placeMarker(event: google.maps.MouseEvent) {
-    new google.maps.Marker({
-      position: event.latLng,
-      map: this.mapObject
-    });
+    this.markerObject ? this.markerObject.setMap(null) : null;
+    this.markerObject = new google.maps.Marker(busMarkerOptions(event, this.mapObject));
     this.mapObject.panTo(event.latLng);
   }
 
