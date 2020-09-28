@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { mapSearchBoundsOptions } from '../main/map/googlemaps.snippets';
 
 @Component({
@@ -26,7 +26,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.searchLocationForm = this.formBuilder.group({
-      searchLocation: this.searchLocation
+      searchLocation: this.searchLocation,
     });
     console.log('@SearchBoxComponent: ngOnChanges called.')
     console.log(this.searchLocation)
@@ -35,11 +35,23 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     console.log('@SearchBoxComponent: ngOnInit called.')
     this.autocompleteObject = new google.maps.places.Autocomplete(this.searchBoxNode.nativeElement, mapSearchBoundsOptions);
+    this.autocompleteObject.addListener('place_changed', () => {
+      this.searchLocationForm.setValue({ searchLocation: this.autocompleteObject.getPlace().formatted_address });
+      // this.searchLocationForm.markAllAsTouched();
+      this.searchLocationForm.get('searchLocation').markAsTouched();
+      // TODO: add validator to make it required 'Please enter a location'
+      // TODO: search button, active once a valid place has been entered
+      // 
+
+      // TODO: loading state while listener is calling api
+
+    });
+
     console.log(this.autocompleteObject);
   }
 
   getCurrentLocation() {
-    return this.searchLocationForm.get('searchLocation').value;
+    return this.searchLocation.value;
   }
 
   onSubmit(event: EventEmitter<any>) {
@@ -48,7 +60,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   }
   resetSearchLocation() {
     this.searchLocationForm.reset({
-      searchLocation: 'London'
+      searchLocation: 'London' // TODO: pass down as dynamic value from App component
     });
     console.log(this.searchLocation.value)
   }

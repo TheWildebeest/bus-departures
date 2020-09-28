@@ -1,6 +1,7 @@
 // Angular imports
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
+
 
 // Services
 import { ExternalApisService } from '../../transport-api.service'
@@ -14,12 +15,10 @@ import { DeparturesBoardListing, TransportDataMember } from './models/transporta
   templateUrl: './main.component.html',
 })
 export class MainComponent {
-
-  // Data flow
-  @Input()
-  searchLocation: FormControl;
-  @Input()
+  // Searchbox state
   searchBoxOpen: boolean;
+  defaultSearchLocation: string = 'London'
+  searchLocation: FormControl = new FormControl([this.defaultSearchLocation, [Validators.required]]);
   dataFromMaps: google.maps.MouseEvent;
 
   // Departures listings properties
@@ -33,6 +32,17 @@ export class MainComponent {
   // https://github.com/angular/components/blob/master/src/google-maps/README.md
 
   constructor(private _externalApisService: ExternalApisService) { }
+
+  ngOnInit(): void {
+    this.searchBoxOpen = false
+  }
+
+  toggleSearching() {
+    console.log()
+    this.searchBoxOpen = !this.searchBoxOpen
+  }
+
+  searchIcon = () => this.searchBoxOpen ? "✕" : "☰";
 
   // maps interaction
   getMapLeftClickData(event: google.maps.MouseEvent): google.maps.MouseEvent {

@@ -182,4 +182,4 @@ const mapsSearchLocationBounds: google.maps.LatLngBounds = new google.maps.LatLn
 //   new google.maps.LatLng(51.27693, -0.55852),
 //   new google.maps.LatLng(51.74019, 0.28605)
 // )
-export const mapSearchBoundsOptions = { bounds: mapsSearchLocationBounds }
+export const mapSearchBoundsOptions: google.maps.places.AutocompleteOptions = { bounds: mapsSearchLocationBounds, strictBounds: true }
