@@ -17,7 +17,7 @@ export class MainComponent {
 
   // Data flow
   @Input()
-  defaultSearchLocation: FormControl;
+  searchLocation: FormControl;
   @Input()
   searchBoxOpen: boolean;
   dataFromMaps: google.maps.MouseEvent;

@@ -1,6 +1,6 @@
 <main class="main-content">
   <app-map (mapLeftClick)="getMapLeftClickData($event)"></app-map>
-  <app-search-box *ngIf="this.searchBoxOpen" [defaultSearchLocation]="defaultSearchLocation">
+  <app-search-box *ngIf="this.searchBoxOpen" [searchLocation]="searchLocation">
   </app-search-box>
   <app-departures-listings [busStopName]="busStopName" [departuresBoardListings]="departuresBoardListings">
   </app-departures-listings>

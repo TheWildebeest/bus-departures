@@ -10,7 +10,7 @@ export class AppComponent {
 
   // Searchbox state
   searchBoxOpen: boolean;
-  defaultSearchLocation: FormControl = new FormControl('London');
+  searchLocation: FormControl = new FormControl('London');
 
   ngOnInit(): void {
     this.searchBoxOpen = false

@@ -10,7 +10,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
 
   // DATA FLOW //
 
-  @Input() defaultSearchLocation: FormControl;
+  @Input() searchLocation: FormControl;
   @Output() currentSearchLocation: EventEmitter<any> = new EventEmitter;
 
   // PROPERTIES //
@@ -22,19 +22,20 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   autocompleteObject: google.maps.places.Autocomplete;
   @ViewChild('pacInput', { static: false }) searchBoxNode: ElementRef;
 
-
   constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.searchLocationForm = this.formBuilder.group({
+      searchLocation: this.searchLocation
+    });
+    console.log('@SearchBoxComponent: ngOnChanges called.')
+    console.log(this.searchLocation)
+  }
+
   ngAfterViewInit(): void {
     console.log('@SearchBoxComponent: ngOnInit called.')
     this.autocompleteObject = new google.maps.places.Autocomplete(this.searchBoxNode.nativeElement, mapSearchBoundsOptions);
     console.log(this.autocompleteObject);
-  }
-
-  ngOnInit(): void {
-    this.searchLocationForm = this.formBuilder.group({
-      searchLocation: this.defaultSearchLocation
-    });
-    console.log('@SearchBoxComponent: ngOnChanges called.')
   }
 
   getCurrentLocation() {
@@ -46,9 +47,10 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     console.log(this.getCurrentLocation())
   }
   resetSearchLocation() {
-    this.searchLocationForm.setValue({
-      searchLocation: this.defaultSearchLocation.value
+    this.searchLocationForm.reset({
+      searchLocation: 'London'
     });
+    console.log(this.searchLocation.value)
   }
 
 }
