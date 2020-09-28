@@ -1,6 +1,6 @@
 // Imports
 
-@use "./variables";
+@use "./variables" as const;
 
 // Reset ---
 
@@ -23,14 +23,14 @@ body {
 app-header {
   .app-header {
     padding: 1vh;
-    @include variables.display_flex_row;
+    @include const.display_flex_row;
     align-items: flex-start;
     top: 0;
     left: 0;
     height: 12vh;
     width: 100%;
-    background-color: variables.$busgrey;
-    border-bottom: 2vh solid variables.$busred;
+    background-color: const.$busgrey;
+    border-bottom: 2vh solid const.$busred;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
@@ -63,7 +63,7 @@ app-header {
   }
 
   .red {
-    color: variables.$busred;
+    color: const.$busred;
   }
 
   .orange {
@@ -123,22 +123,41 @@ app-main {
     position: absolute;
     left: 0;
     top: 0;
-    box-shadow: variables.$primary-shadow;
+    box-shadow: const.$primary-shadow;
 
     .search-box-field {
       display: grid;
       place-items: end start;
       width: 100%;
       height: 100%;
+      grid-template-rows: 55% 45%;
 
       > input {
         outline: none;
         border: none;
-        box-shadow: variables.$soft-shadow;
+        box-shadow: const.$soft-shadow;
         width: 80%;
-        height: 30%;
+        height: 20%;
         font-size: 1.2em;
         padding: 10% 6%;
+      }
+
+      > .search-box-invalid {
+        display: grid;
+        place-items: end start;
+        height: 100%;
+        width: 100%;
+
+        > h5 {
+          text-align: center;
+          animation: fadein 0.7s ease-in-out;
+          color: orange;
+          background-color: const.$busblack;
+          box-shadow: const.$primary-shadow;
+          line-height: 100%;
+          width: 80%;
+          padding: 2%;
+        }
       }
     }
 
@@ -184,8 +203,8 @@ app-main {
   width: 80%;
   margin: 5vh 10%;
   height: 35vh;
-  box-shadow: variables.$primary-shadow;
-  background-color: variables.$busblack;
+  box-shadow: const.$primary-shadow;
+  background-color: const.$busblack;
 }
 
 div.gm-style-cc[draggable="false"] {
@@ -206,7 +225,7 @@ img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"], img
   width: 80%;
   margin: 5vh 10%;
   height: 35vh;
-  box-shadow: variables.$primary-shadow;
+  box-shadow: const.$primary-shadow;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -226,7 +245,7 @@ img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"], img
 }
 
 .departure-listing {
-  @include variables.display_flex_row;
+  @include const.display_flex_row;
   justify-content: space-between;
   width: 80%;
 

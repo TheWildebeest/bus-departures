@@ -4,6 +4,9 @@
   </div> -->
   <form [formGroup]="searchLocationForm" (ngSubmit)="onSubmit($event)" class="search-box-form">
     <div class="search-box-field">
+      <div class="search-box-invalid">
+        <h5 *ngIf="searchLocation.invalid">Type a place name to get going...</h5>
+      </div>
       <input #pacInput id="pac-input" type="text" formControlName="searchLocation">
     </div>
     <div class="search-box-heading">
