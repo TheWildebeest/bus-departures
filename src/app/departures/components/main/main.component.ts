@@ -18,8 +18,8 @@ export class MainComponent {
   // Searchbox state
   searchBoxOpen: boolean;
   defaultSearchLocation: string = 'London'
-  searchLocation: FormControl = new FormControl([this.defaultSearchLocation, [Validators.required]]);
-  dataFromMaps: google.maps.MouseEvent;
+  searchLocation: FormControl = new FormControl(this.defaultSearchLocation, [Validators.required]);
+  dataFromMaps: google.maps.MouseEvent
 
   // Departures listings properties
   busStopName: string = "Click the map to show live departures for the closest bus stop";

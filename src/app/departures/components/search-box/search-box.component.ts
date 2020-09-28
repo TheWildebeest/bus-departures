@@ -41,22 +41,18 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
       this.searchLocationForm.get('searchLocation').markAsTouched();
       // TODO: add validator to make it required 'Please enter a location'
       // TODO: search button, active once a valid place has been entered
-      // 
-
+      // TODO: pipes
       // TODO: loading state while listener is calling api
-
     });
-
-    console.log(this.autocompleteObject);
   }
 
-  getCurrentLocation() {
-    return this.searchLocation.value;
+  get currentLocation() {
+    return this.searchLocationForm.get('searchLocation');
   }
 
   onSubmit(event: EventEmitter<any>) {
     this.currentSearchLocation.emit(`${event}`)
-    console.log(this.getCurrentLocation())
+    console.log(this.currentLocation)
   }
   resetSearchLocation() {
     this.searchLocationForm.reset({
