@@ -1,12 +1,12 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnInit, OnChanges, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { mapSearchBoundsOptions } from '../main/map/googlemaps.snippets';
 
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html'
 })
-export class SearchBoxComponent implements OnChanges, AfterViewInit {
+export class SearchBoxComponent implements OnInit, AfterViewInit {
 
   // DATA FLOW //
 
@@ -16,9 +16,7 @@ export class SearchBoxComponent implements OnChanges, AfterViewInit {
   // PROPERTIES //
 
   // Reactive Forms
-  searchLocationForm = this.formBuilder.group({
-    searchLocation: ''
-  });
+  searchLocationForm: FormGroup;
 
   // Google Maps Places library
   autocompleteObject: google.maps.places.Autocomplete;
@@ -32,7 +30,10 @@ export class SearchBoxComponent implements OnChanges, AfterViewInit {
     console.log(this.autocompleteObject);
   }
 
-  ngOnChanges(): void {
+  ngOnInit(): void {
+    this.searchLocationForm = this.formBuilder.group({
+      searchLocation: this.defaultSearchLocation
+    });
     console.log('@SearchBoxComponent: ngOnChanges called.')
   }
 

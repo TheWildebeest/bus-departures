@@ -7,7 +7,8 @@
       <input #pacInput id="pac-input" type="text" formControlName="searchLocation">
     </div>
     <div class="search-box-heading">
-      <p>Bus stops near <strong>{{ getCurrentLocation() }}</strong></p>
+      <p>Search for bus stops near:</p>
+      <h3>{{ getCurrentLocation() }}</h3>
     </div>
     <input class="search-box-reset-button" type="button" value="⟲" (click)="resetSearchLocation()" />
   </form>
