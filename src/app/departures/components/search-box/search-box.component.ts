@@ -58,6 +58,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   onSubmit() {
     this.searchPlaceResult = this.autocompleteObject.getPlace();
     this.formSubmit.emit(this.searchPlaceResult);
+    this.resetSearchLocation();
   }
 
   resetSearchLocation() {
