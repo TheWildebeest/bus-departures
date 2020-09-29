@@ -1,6 +1,6 @@
 // Angular imports
 import { Component, Input } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 // Services
@@ -17,9 +17,13 @@ import { DeparturesBoardListing, TransportDataMember } from './models/transporta
 export class MainComponent {
   // Searchbox state
   searchBoxOpen: boolean;
-  defaultSearchLocation: string = 'London'
-  searchLocation: FormControl = new FormControl(this.defaultSearchLocation, [Validators.required]);
+  defaultSearchLocation: string = ''
+  searchLocation: FormControl = new FormControl(this.defaultSearchLocation, {
+    validators: Validators.required,
+    updateOn: 'change'
+  });
   dataFromMaps: google.maps.MouseEvent
+  searchResult: google.maps.LatLng;
 
   // Departures listings properties
   busStopName: string = "Click the map to show live departures for the closest bus stop";
@@ -75,6 +79,12 @@ export class MainComponent {
         console.log(this.busStopName)
       }
     )
+  }
+
+  findSearchLocationOnMap(event: google.maps.places.PlaceResult) {
+    this.toggleSearching();
+    this.searchResult = event.geometry.location;
+    console.log(event.geometry.location);
   }
 
   handleClick(event: google.maps.MouseEvent) {

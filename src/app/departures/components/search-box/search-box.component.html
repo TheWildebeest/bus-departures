@@ -2,7 +2,7 @@
   <!-- <div class="search-box-control">
     <p class="toggle-search-icon" (click)="this.toggleSearching()">{{ searchIcon() }}</p>
   </div> -->
-  <form [formGroup]="searchLocationForm" (ngSubmit)="onSubmit($event)" class="search-box-form">
+  <form [formGroup]="searchLocationForm" class="search-box-form" (ngSubmit)="onSubmit()">
     <div class="search-box-field">
       <div class="search-box-invalid">
         <h5 *ngIf="searchLocation.invalid">Type a place name to get going...</h5>
@@ -10,9 +10,14 @@
       <input #pacInput id="pac-input" type="text" formControlName="searchLocation">
     </div>
     <div class="search-box-heading">
-      <p>Search for bus stops near:</p>
-      <h3>{{ currentLocation.value }}</h3>
+      <div>
+        <p *ngIf="searchLocation.valid">Search for bus stops near:</p>
+      </div>
+      <div>
+        <h3>{{ currentLocation.value }}</h3>
+      </div>
+      <button class="search-box-submit-button" [class.valid]="searchLocation.valid"
+        [disabled]="searchLocationForm.invalid" type="submit">🔎︎</button>
     </div>
-    <input class="search-box-reset-button" type="button" value="⟲" (click)="resetSearchLocation()" />
   </form>
 </div>

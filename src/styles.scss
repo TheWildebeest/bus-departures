@@ -1,6 +1,6 @@
 // Imports
 
-@use "./variables" as const;
+@use "./variables";
 
 // Reset ---
 
@@ -23,14 +23,14 @@ body {
 app-header {
   .app-header {
     padding: 1vh;
-    @include const.display_flex_row;
+    @include variables.display_flex_row;
     align-items: flex-start;
     top: 0;
     left: 0;
     height: 12vh;
     width: 100%;
-    background-color: const.$busgrey;
-    border-bottom: 2vh solid const.$busred;
+    background-color: variables.$busgrey;
+    border-bottom: 2vh solid variables.$busred;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
@@ -63,7 +63,7 @@ app-header {
   }
 
   .red {
-    color: const.$busred;
+    color: variables.$busred;
   }
 
   .orange {
@@ -106,40 +106,46 @@ app-main {
 
 .search-box-wrapper {
   position: fixed;
-  top: 14vh;
-  right: 5vw;
+  top: 17vh;
+  right: 10vw;
   z-index: 1;
   font-size: 1.4em;
-  width: 90vw;
+  width: 80%;
 
   .search-box-form {
     animation: fadein 0.5s 1;
-    background-color: #ffffffbb;
+    background-color: #ffffff26;
     padding: 2%;
     width: 100%;
-    height: 40vh;
+    height: 35vh;
     display: flex;
     justify-content: space-between;
     position: absolute;
     left: 0;
     top: 0;
-    box-shadow: const.$primary-shadow;
+    box-shadow: variables.$primary-shadow;
 
     .search-box-field {
       display: grid;
       place-items: end start;
       width: 100%;
       height: 100%;
-      grid-template-rows: 55% 45%;
+      grid-template-rows: 60% 40%;
 
       > input {
         outline: none;
         border: none;
-        box-shadow: const.$soft-shadow;
+        box-shadow: variables.$primary-shadow;
         width: 80%;
         height: 20%;
         font-size: 1.2em;
         padding: 10% 6%;
+        background-color: white;
+        color: variables.$busblack;
+
+        &::placeholder {
+          color: lightgrey;
+        }
       }
 
       > .search-box-invalid {
@@ -152,8 +158,7 @@ app-main {
           text-align: center;
           animation: fadein 0.7s ease-in-out;
           color: orange;
-          background-color: const.$busblack;
-          box-shadow: const.$primary-shadow;
+          background-color: variables.$busblack;
           line-height: 100%;
           width: 80%;
           padding: 2%;
@@ -164,10 +169,10 @@ app-main {
     .search-box-heading {
       display: grid;
       place-items: start;
-      padding: 2%;
-      grid-template-rows: 1fr 4fr;
+      grid-template-rows: 1fr 2fr 2fr;
       width: 100%;
       height: 100%;
+      color: white;
 
       > p {
         width: 100%;
@@ -191,7 +196,42 @@ app-main {
         background-color: #d18800;
       }
     }
+
+    .search-box-submit-button {
+      margin: 5px;
+      align-self: end;
+      width: 8vh;
+      height: 8vh;
+      outline: 5px solid lightgrey;
+      border: 5px solid variables.$busgrey;
+      font-size: 4vh;
+      color: variables.$busgrey;
+      background-color: lightgrey;
+      background-position: center;
+      background-size: cover;
+      box-shadow: variables.$primary-shadow;
+
+      &.valid {
+        background-color: white;
+        outline-color: orange;
+        border-color: black;
+
+        color: variables.$busblack;
+        color: variables.$busgrey;
+        &:hover {
+          color: variables.$busblack;
+          cursor: pointer;
+        }
+        &:active {
+          font-size: 3.7vh;
+        }
+      }
+    }
   }
+}
+
+.pac-item {
+  background-color: orange;
 }
 
 // --searchbox--- //
@@ -203,8 +243,8 @@ app-main {
   width: 80%;
   margin: 5vh 10%;
   height: 35vh;
-  box-shadow: const.$primary-shadow;
-  background-color: const.$busblack;
+  box-shadow: variables.$primary-shadow;
+  background-color: variables.$busblack;
 }
 
 div.gm-style-cc[draggable="false"] {
@@ -225,7 +265,7 @@ img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"], img
   width: 80%;
   margin: 5vh 10%;
   height: 35vh;
-  box-shadow: const.$primary-shadow;
+  box-shadow: variables.$primary-shadow;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -245,7 +285,7 @@ img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"], img
 }
 
 .departure-listing {
-  @include const.display_flex_row;
+  @include variables.display_flex_row;
   justify-content: space-between;
   width: 80%;
 

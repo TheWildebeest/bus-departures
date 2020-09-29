@@ -2,7 +2,7 @@
 
 import {
   Component, AfterViewInit, ViewChild,
-  EventEmitter, ElementRef, Output
+  EventEmitter, ElementRef, Output, Input, OnChanges, SimpleChanges
 }
   from '@angular/core';
 
@@ -13,9 +13,11 @@ import { busMapOptions, busMarkerOptions } from './googlemaps.snippets';
   selector: 'app-map',
   templateUrl: './map.component.html',
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements AfterViewInit, OnChanges {
 
   // DATA FLOW //
+  @Input()
+  mapCenter: google.maps.LatLng;
   @Output()
   mapLeftClick: EventEmitter<google.maps.MouseEvent> = new EventEmitter();
 
@@ -33,6 +35,20 @@ export class MapComponent implements AfterViewInit {
     this.initMap();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.centerMap(this.mapCenter);
+    console.log(changes);
+    // for (const propName in changes) {
+    //   if (changes.hasOwnProperty(propName)) {
+    //     switch (propName) {
+    //       case 'mapCenter': {
+    //         this.centerMap(changes.currentValue)
+    //       }
+    //     }
+    //   }
+    // }
+  }
+
   // METHODS //
 
   // Map initializer function
@@ -44,7 +60,7 @@ export class MapComponent implements AfterViewInit {
     });
   }
 
-  handleMapLeftClick(MouseEvent: google.maps.MouseEvent) {
+  handleMapLeftClick(MouseEvent?: google.maps.MouseEvent,) {
     this.mapLeftClick.emit(MouseEvent);
     console.log(MouseEvent);
     this.placeMarker(MouseEvent);
@@ -52,10 +68,14 @@ export class MapComponent implements AfterViewInit {
     // this.markerOptions = markerStylesSnippet;
   }
 
+  centerMap(latLng: google.maps.LatLng) {
+    this.mapObject.panTo(latLng)
+  }
+
   placeMarker(event: google.maps.MouseEvent) {
     this.markerObject ? this.markerObject.setMap(null) : null;
     this.markerObject = new google.maps.Marker(busMarkerOptions(event, this.mapObject));
-    this.mapObject.panTo(event.latLng);
+    // this.mapObject.panTo(event.latLng);
+    this.centerMap(event.latLng);
   }
-
 }

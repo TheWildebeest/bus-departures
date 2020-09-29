@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { mapSearchBoundsOptions } from '../main/map/googlemaps.snippets';
 
 @Component({
@@ -11,7 +11,8 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   // DATA FLOW //
 
   @Input() searchLocation: FormControl;
-  @Output() currentSearchLocation: EventEmitter<any> = new EventEmitter;
+  @Output() formSubmit: EventEmitter<google.maps.places.PlaceResult> = new EventEmitter();
+  searchPlaceResult: google.maps.places.PlaceResult;
 
   // PROPERTIES //
 
@@ -28,35 +29,40 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     this.searchLocationForm = this.formBuilder.group({
       searchLocation: this.searchLocation,
     });
-    console.log('@SearchBoxComponent: ngOnChanges called.')
-    console.log(this.searchLocation)
   }
 
   ngAfterViewInit(): void {
-    console.log('@SearchBoxComponent: ngOnInit called.')
-    this.autocompleteObject = new google.maps.places.Autocomplete(this.searchBoxNode.nativeElement, mapSearchBoundsOptions);
-    this.autocompleteObject.addListener('place_changed', () => {
-      this.searchLocationForm.setValue({ searchLocation: this.autocompleteObject.getPlace().formatted_address });
-      // this.searchLocationForm.markAllAsTouched();
-      this.searchLocationForm.get('searchLocation').markAsTouched();
-      // TODO: add validator to make it required 'Please enter a location'
-      // TODO: search button, active once a valid place has been entered
-      // TODO: pipes
-      // TODO: loading state while listener is calling api
-    });
+    this.autocompleteObject = new google.maps.places.Autocomplete(
+      this.searchBoxNode.nativeElement, mapSearchBoundsOptions);
+    this.autocompleteObject.addListener
+      ('place_changed', () => {
+        const result = this.autocompleteObject
+          .getPlace();
+        this.searchLocationForm.setValue({
+          searchLocation: result.formatted_address
+        });
+        this.searchBoxNode.nativeElement.focus();
+        // this.searchLocationForm.markAllAsTouched();
+        // this.searchLocationForm.get('searchLocation').markAsTouched();
+        // TODO: add validator to make it required 'Please enter a location'
+        // TODO: search button, active once a valid place has been entered
+        // TODO: pipes
+        // TODO: loading state while listener is calling api
+      });
   }
 
   get currentLocation() {
     return this.searchLocationForm.get('searchLocation');
   }
 
-  onSubmit(event: EventEmitter<any>) {
-    this.currentSearchLocation.emit(`${event}`)
-    console.log(this.currentLocation)
+  onSubmit() {
+    this.searchPlaceResult = this.autocompleteObject.getPlace();
+    this.formSubmit.emit(this.searchPlaceResult);
   }
+
   resetSearchLocation() {
     this.searchLocationForm.reset({
-      searchLocation: 'London' // TODO: pass down as dynamic value from App component
+      searchLocation: '' // TODO: pass down as dynamic value from App component
     });
     console.log(this.searchLocation.value)
   }

@@ -1,7 +1,8 @@
 <app-header (searchBoxToggled)="toggleSearching()" [searchIcon]="searchIcon()"></app-header>
 <main class="main-content">
-  <app-map (mapLeftClick)="getMapLeftClickData($event)"></app-map>
-  <app-search-box *ngIf="this.searchBoxOpen" [searchLocation]="searchLocation">
+  <app-map [mapCenter]="searchResult" (mapLeftClick)="getMapLeftClickData($event)"></app-map>
+  <app-search-box *ngIf="this.searchBoxOpen" [searchLocation]="searchLocation"
+    (formSubmit)="findSearchLocationOnMap($event)">
   </app-search-box>
   <app-departures-listings [busStopName]="busStopName" [departuresBoardListings]="departuresBoardListings">
   </app-departures-listings>
