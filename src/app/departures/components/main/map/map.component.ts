@@ -36,17 +36,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.centerMap(this.mapCenter);
-    console.log(changes);
-    // for (const propName in changes) {
-    //   if (changes.hasOwnProperty(propName)) {
-    //     switch (propName) {
-    //       case 'mapCenter': {
-    //         this.centerMap(changes.currentValue)
-    //       }
-    //     }
-    //   }
-    // }
+    if (changes.mapCenter.currentValue) {
+      this.centerMap(changes.mapCenter.currentValue);
+    }
   }
 
   // METHODS //
@@ -62,7 +54,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
   handleMapLeftClick(MouseEvent?: google.maps.MouseEvent,) {
     this.mapLeftClick.emit(MouseEvent);
-    console.log(MouseEvent);
     this.placeMarker(MouseEvent);
     // this.markerPosition = event.latLng;
     // this.markerOptions = markerStylesSnippet;

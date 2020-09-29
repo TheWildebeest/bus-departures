@@ -1,7 +1,4 @@
 <div class="search-box-wrapper">
-  <!-- <div class="search-box-control">
-    <p class="toggle-search-icon" (click)="this.toggleSearching()">{{ searchIcon() }}</p>
-  </div> -->
   <form [formGroup]="searchLocationForm" class="search-box-form" (ngSubmit)="onSubmit()">
     <div class="search-box-field">
       <div class="search-box-invalid">
@@ -16,6 +13,8 @@
       <div>
         <h3>{{ currentLocation.value }}</h3>
       </div>
+      <input *ngIf="searchLocation.valid" type="button" value="Reset" class="search-box-reset-button"
+        (click)="resetSearchLocation()">
       <button class="search-box-submit-button" [class.valid]="searchLocation.valid"
         [disabled]="searchLocationForm.invalid" type="submit">🔎︎</button>
     </div>
