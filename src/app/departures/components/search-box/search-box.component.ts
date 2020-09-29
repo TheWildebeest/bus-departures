@@ -39,7 +39,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
         const result = this.autocompleteObject
           .getPlace();
         this.searchLocationForm.setValue({
-          searchLocation: result.formatted_address
+          searchLocation: result ? result.formatted_address : ''
         });
         this.searchBoxNode.nativeElement.focus();
         // this.searchLocationForm.markAllAsTouched();
@@ -52,6 +52,9 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   }
 
   get currentLocation() {
+    if ((!this.searchLocationForm.get('searchLocation').value) && (this.autocompleteObject && this.autocompleteObject.getPlace())) {
+      this.resetSearchLocation();
+    };
     return this.searchLocationForm.get('searchLocation');
   }
 
@@ -65,7 +68,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     this.searchLocationForm.reset({
       searchLocation: '' // TODO: pass down as dynamic value from App component
     });
-    console.log(this.searchLocation.value)
+    this.autocompleteObject.set('place', null);
   }
 
 }
