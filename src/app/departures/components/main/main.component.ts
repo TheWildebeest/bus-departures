@@ -15,6 +15,7 @@ import { DeparturesBoardListing, TransportDataMember } from './models/transporta
   templateUrl: './main.component.html',
 })
 export class MainComponent {
+  status: string = "live";
   // Searchbox state
   searchBoxOpen: boolean;
   defaultSearchLocation: string = ''

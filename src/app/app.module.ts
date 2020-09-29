@@ -7,6 +7,7 @@ import { DeparturesModule } from './departures/departures.module';
 
 // components
 import { AppComponent } from './app.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 // routing
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

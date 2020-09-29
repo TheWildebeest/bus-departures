@@ -6,6 +6,9 @@ import { FormControl } from '@angular/forms';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
+
+  @Input()
+  status: string;
   @Input()
   defaultSearchLocation: FormControl;
   @Input()

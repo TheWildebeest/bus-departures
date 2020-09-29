@@ -1,4 +1,4 @@
-<app-header (searchBoxToggled)="toggleSearching()" [searchIcon]="searchIcon()"></app-header>
+<app-header [status]="status" (searchBoxToggled)="toggleSearching()" [searchIcon]="searchIcon()"></app-header>
 <main class="main-content">
   <app-map [mapCenter]="searchResult" (mapLeftClick)="getMapLeftClickData($event)"></app-map>
   <app-search-box *ngIf="this.searchBoxOpen" [searchLocation]="searchLocation"

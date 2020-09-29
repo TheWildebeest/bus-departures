@@ -23,7 +23,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     MainComponent,
     MapComponent,
     SearchBoxComponent,
-    DeparturesListingsComponent
+    DeparturesListingsComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +35,6 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     MainComponent,
     MapComponent,
     SearchBoxComponent,
-    DeparturesListingsComponent
   ],
   providers: [
     ExternalApisService
