@@ -15,8 +15,9 @@
       </div>
       <input *ngIf="searchLocation.valid" type="button" value="Reset" class="search-box-reset-button"
         (click)="resetSearchLocation()">
-      <button class="search-box-submit-button" [class.valid]="searchLocation.valid"
-        [disabled]="searchLocationForm.invalid" type="submit">🔎︎</button>
+      <button class="search-box-submit-button"
+        [class.valid]="searchLocation.valid && autocompleteObject.getPlace().geometry"
+        [disabled]="searchLocationForm.invalid || !autocompleteObject.getPlace().geometry" type="submit">🔎︎</button>
     </div>
   </form>
 </div>
