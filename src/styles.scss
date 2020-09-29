@@ -71,6 +71,36 @@ app-header {
   }
 }
 
+.home-link {
+  height: 8vh;
+  width: 8vh;
+  position: fixed;
+  top: 1vh;
+  left: 1vh;
+  backdrop-filter: grayscale(75%);
+
+  &:hover {
+    backdrop-filter: none;
+  }
+}
+
+.not-found-filter {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  top: 10vh;
+  left: 0;
+  height: 90vh;
+  width: 100%;
+  backdrop-filter: grayscale(75%);
+}
+
+.not-in-service {
+  padding: 10%;
+  font-size: 20vw;
+  transform: rotate(90deg);
+}
+
 // --header--- //
 
 // Main --- //
