@@ -7,11 +7,21 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'departures',
+    // redirectTo: 'departures',
     component: MainComponent
   },
   {
+    path: '',
+    redirectTo: 'departures',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
+    redirectTo: 'not-in-service',
+  },
+  {
+    path: 'not-in-service',
     component: NotFoundComponent
   }
 ];
