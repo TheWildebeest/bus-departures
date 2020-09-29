@@ -9,10 +9,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
 import { MapComponent } from './components/main/map/map.component';
+import { DeparturesListingsComponent } from './components/main/departures-listings/departures-listings.component';
+
 
 // Services
 import { ExternalApisService } from './transport-api.service';
-import { DeparturesListingsComponent } from './components/main/departures-listings/departures-listings.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 
@@ -21,8 +22,8 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     HeaderComponent,
     MainComponent,
     MapComponent,
-    DeparturesListingsComponent,
-    SearchBoxComponent
+    SearchBoxComponent,
+    DeparturesListingsComponent
   ],
   imports: [
     CommonModule,
@@ -33,8 +34,8 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     HeaderComponent,
     MainComponent,
     MapComponent,
-    DeparturesListingsComponent,
-    SearchBoxComponent
+    SearchBoxComponent,
+    DeparturesListingsComponent
   ],
   providers: [
     ExternalApisService
