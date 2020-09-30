@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotFoundComponent } from '../not-found/not-found.component';
 import { MainComponent } from './components/main/main.component'
 
 const routes: Routes = [
@@ -10,8 +9,11 @@ const routes: Routes = [
     component: MainComponent
   },
   {
+    path: 'timetable/:service'
+  },
+  {
     path: '**',
-    component: MainComponent
+    redirectTo: ''
   }
 ];
 

@@ -13,7 +13,6 @@ const routes: Routes = [
   },
   {
     path: 'departures',
-    pathMatch: 'prefix',
     loadChildren: () => import('./departures/departures.module')
       .then(module => module.DeparturesModule)
       .catch(e => console.log('Error loading Departures Module.\n\n') + e)
@@ -24,13 +23,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    pathMatch: 'full',
     redirectTo: 'departures',
-  },
-  // {
-  //   path: '**',
-  //   redirectTo: 'not-in-service',
-  // },
+  }
 ];
 
 @NgModule({

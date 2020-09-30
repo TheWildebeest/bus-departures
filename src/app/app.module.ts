@@ -1,5 +1,6 @@
 // angular modules
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 // routing
@@ -23,6 +24,7 @@ import { DeparturesModule } from './departures/departures.module';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    CommonModule,
     DeparturesModule,
   ],
   providers: [],

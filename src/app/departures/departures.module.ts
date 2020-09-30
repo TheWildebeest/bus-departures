@@ -1,6 +1,5 @@
 // Angular Modules
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +17,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 
 // Services
 import { ExternalApisService } from './transport-api.service';
+import { TimetableComponent } from './components/timetable/timetable.component';
 
 
 @NgModule({
@@ -28,6 +28,7 @@ import { ExternalApisService } from './transport-api.service';
     SearchBoxComponent,
     DeparturesListingsComponent,
     DeparturesComponent,
+    TimetableComponent,
   ],
   imports: [
     CommonModule,
