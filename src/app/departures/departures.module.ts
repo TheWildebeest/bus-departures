@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DeparturesRoutingModule } from './departures-routing.module'
 
 
 // Components
@@ -28,7 +29,8 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
   imports: [
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DeparturesRoutingModule,
   ],
   exports: [
     HeaderComponent,

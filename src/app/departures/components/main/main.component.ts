@@ -1,6 +1,8 @@
 // Angular imports
-import { Component, EventEmitter, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 
 // Services
@@ -32,14 +34,22 @@ export class MainComponent {
     { service: "", destination: "", departureTime: "" },
   ];
 
+  // Router test
+  test: any;
+
 
   // @angular/google-maps readme:
   // https://github.com/angular/components/blob/master/src/google-maps/README.md
 
-  constructor(private _externalApisService: ExternalApisService) { }
+  constructor(
+    private _externalApisService: ExternalApisService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.searchBoxOpen = false
+    this.searchBoxOpen = false;
+    this.route.queryParams.subscribe(params => {
+      this.test = params['service'];
+    })
   }
 
   toggleSearching() {
