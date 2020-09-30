@@ -1,16 +1,18 @@
 // angular modules
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-// custom modules
-import { DeparturesModule } from './departures/departures.module';
+// routing
+import { AppRoutingModule } from './app-routing.module';
 
 // components
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
-// routing
-import { AppRoutingModule } from './app-routing.module';
+// custom modules
+import { DeparturesModule } from './departures/departures.module';
+
+
 
 
 @NgModule({
@@ -19,8 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     NotFoundComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     DeparturesModule,
   ],
   providers: [],
