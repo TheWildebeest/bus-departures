@@ -1,12 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DeparturesBoardListing } from '../models/transportapi.interface';
 
 @Component({
   selector: 'app-departures-listings',
   templateUrl: './departures-listings.component.html',
-  styleUrls: ['./departures-listings.component.scss']
 })
-export class DeparturesListingsComponent implements OnChanges {
+export class DeparturesListingsComponent {
 
 
   @Input()
@@ -19,11 +18,7 @@ export class DeparturesListingsComponent implements OnChanges {
 
   constructor() { }
 
-  ngOnChanges() {
-    console.log("@DeparturesListingsComponent: ngOnChanges called.")
-  }
-
-  handleLeftClick(id: string) {
-    this.clickDeparture.emit(id);
+  handleLeftClick(departure) {
+    this.clickDeparture.emit(departure);
   }
 }

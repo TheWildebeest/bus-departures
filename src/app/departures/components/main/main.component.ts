@@ -1,16 +1,12 @@
 // Angular imports
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
-
 
 // Services
 import { ExternalApisService } from '../../transport-api.service'
 
 // Interfaces
 import { DeparturesBoardListing, TransportDataMember } from './models/transportapi.interface';
-
 
 @Component({
   selector: 'app-main',
@@ -34,22 +30,15 @@ export class MainComponent {
     { service: "", destination: "", departureTime: "" },
   ];
 
-  // Router test
-  test: any;
-
-
   // @angular/google-maps readme:
   // https://github.com/angular/components/blob/master/src/google-maps/README.md
 
   constructor(
-    private _externalApisService: ExternalApisService,
-    private route: ActivatedRoute) { }
+    private _externalApisService: ExternalApisService
+  ) { }
 
   ngOnInit(): void {
     this.searchBoxOpen = false;
-    this.route.queryParams.subscribe(params => {
-      this.test = params['service'];
-    })
   }
 
   toggleSearching() {
@@ -104,8 +93,10 @@ export class MainComponent {
     // this.getBusStop(this.latitude, this.longitude);
   }
 
-  getTimetable(event: string) {
-    console.log(event);
+  getTimetable(event) {
+    console.log(event.service);
+    this._externalApisService.selectCurrentService(event);
+
   }
 
 }

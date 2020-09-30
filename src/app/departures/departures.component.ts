@@ -11,4 +11,8 @@ export class DeparturesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getTimetable(event: string) {
+    console.log(event);
+  }
+
 }

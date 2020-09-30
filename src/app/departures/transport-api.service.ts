@@ -21,6 +21,8 @@ const httpOptions = {
 })
 export class ExternalApisService {
   data: Observable<TransportData>;
+  currentService: any;
+  currentTimetable: Observable<Object>;
   transportApiUrl: string = "https://transportapi.com/v3/uk/";
   atcoCode: string;
 
@@ -80,5 +82,10 @@ export class ExternalApisService {
         })
       );
     return departuresBoardInfo;
+  }
+
+  selectCurrentService(departure) {
+    this.currentService = departure;
+    console.log(departure.destination)
   }
 }

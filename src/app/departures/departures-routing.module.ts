@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component'
+import { TimetableComponent } from './components/timetable/timetable.component';
 
 const routes: Routes = [
   {
@@ -9,7 +10,12 @@ const routes: Routes = [
     component: MainComponent
   },
   {
-    path: 'timetable/:service'
+    path: 'timetable',
+    component: TimetableComponent
+  },
+  {
+    path: 'timetable/:id',
+    component: TimetableComponent
   },
   {
     path: '**',

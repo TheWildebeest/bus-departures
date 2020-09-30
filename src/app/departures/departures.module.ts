@@ -41,6 +41,7 @@ import { TimetableComponent } from './components/timetable/timetable.component';
     MainComponent,
     MapComponent,
     SearchBoxComponent,
+    DeparturesListingsComponent
   ],
   providers: [
     ExternalApisService
