@@ -60,6 +60,7 @@ export class ExternalApisService {
         ))
       )
       .pipe(
+        // map(data => console.log(data)),
         map((busStopData: any) => Object.entries(busStopData.departures)),
         map((departures: any) => {
           return departures.map(departure => departure[1]);
@@ -70,7 +71,9 @@ export class ExternalApisService {
               return {
                 service: departure[0].line_name,
                 destination: departure[0].direction,
-                departureTime: departure[0].best_departure_estimate
+                departureTime: departure[0].best_departure_estimate,
+                id: departure[0].id,
+                linkText: 'View full timetable'
               }
             })
           return departuresList;

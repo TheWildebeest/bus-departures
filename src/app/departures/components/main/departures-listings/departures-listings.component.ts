@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { DeparturesBoardListing } from '../models/transportapi.interface';
 
 @Component({
@@ -14,9 +14,16 @@ export class DeparturesListingsComponent implements OnChanges {
   @Input()
   busStopName: string
 
+  @Output()
+  clickDeparture: EventEmitter<string> = new EventEmitter();
+
   constructor() { }
 
   ngOnChanges() {
     console.log("@DeparturesListingsComponent: ngOnChanges called.")
+  }
+
+  handleLeftClick(id: string) {
+    this.clickDeparture.emit(id);
   }
 }

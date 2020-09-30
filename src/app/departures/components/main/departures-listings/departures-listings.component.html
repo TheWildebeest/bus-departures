@@ -4,7 +4,10 @@
   </div>
   <div *ngFor="let departure of departuresBoardListings; let i = index" class="bus-stop departure-listing">
     <h3 class="bus-service">{{ departure.service }}</h3>
-    <h3 class="bus-destination">{{ departure.destination }}</h3>
+    <span class="bus-destination">
+      <h3 class="destination-name">{{ departure.destination }}</h3>
+      <span class="timetable-popup" (click)="handleLeftClick(departure.id)">{{ departure.linkText }}</span>
+    </span>
     <h3 class="bus-depart-time">{{ departure.departureTime }}</h3>
   </div>
 </div>

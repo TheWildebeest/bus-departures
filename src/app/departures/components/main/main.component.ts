@@ -1,5 +1,5 @@
 // Angular imports
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
@@ -83,8 +83,8 @@ export class MainComponent {
   }
 
   findSearchLocationOnMap(event: google.maps.places.PlaceResult) {
-    this.toggleSearching();
     this.searchResult = event.geometry.location;
+    this.toggleSearching();
     console.log(event.geometry.location);
   }
 
@@ -92,6 +92,10 @@ export class MainComponent {
     this.getBusStopName(event.latLng);
     this.getDepartures(event.latLng);
     // this.getBusStop(this.latitude, this.longitude);
+  }
+
+  getTimetable(event: string) {
+    console.log(event);
   }
 
 }

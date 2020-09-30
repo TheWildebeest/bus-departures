@@ -317,11 +317,18 @@ img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"], img
 }
 
 .departure-listing {
-  @include variables.display_flex_row;
-  justify-content: space-between;
+  cursor: default;
+  display: flex;
+  justify-content: flex-start;
   width: 80%;
+  min-height: 22%;
 
-  h3 {
+  &:hover > .bus-destination > .timetable-popup {
+    display: initial;
+    cursor: pointer;
+  }
+
+  > * {
     font-family: unibody;
     color: orange;
     text-align: left;
@@ -331,7 +338,19 @@ img[src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5.png"], img
     }
 
     &.bus-destination {
+      position: relative;
       width: 100%;
+
+      .destination-name {
+        font-family: inherit;
+      }
+
+      .timetable-popup {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 55%;
+      }
     }
 
     &.bus-depart-time {

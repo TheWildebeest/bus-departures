@@ -4,6 +4,7 @@
   <app-search-box *ngIf="this.searchBoxOpen" [searchLocation]="searchLocation"
     (formSubmit)="findSearchLocationOnMap($event)">
   </app-search-box>
-  <app-departures-listings [departuresBoardListings]="departuresBoardListings" [busStopName]="busStopName">
+  <app-departures-listings (clickDeparture)="getTimetable($event)" [departuresBoardListings]="departuresBoardListings"
+    [busStopName]="busStopName">
   </app-departures-listings>
 </main>
