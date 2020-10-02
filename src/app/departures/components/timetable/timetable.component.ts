@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 
 // Services
 import { ExternalApisService } from '../../transport-api.service'
@@ -25,18 +24,27 @@ import { ExternalApisService } from '../../transport-api.service'
           <p>Departing at:</p>
           <h2>{{ selectedService[2] }}</h2>
         </div>
+        <div *ngFor="let stop of timetable; let i = index">
+          <h2 class="bus-service">{{ i }}</h2>
+          <h2 class="bus-service">{{ stop.name }}</h2>
+          <h2 class="destination-name">{{ stop.time }}</h2>
+        </div>
       </section>
-      <!-- <div *ngFor="let departure of departuresBoardListings; let i = index" class="bus-stop departure-listing"> -->
-        <!-- <h2 class="bus-service">{{ departure.service }}</h2>
-        <h2 class="destination-name">{{ departure.destination }}</h2>
-        <h2 class="bus-depart-time">{{ departure.departureTime }}</h2> -->
-      <!-- </div> -->
     </main>
-  `
+      `
 })
 export class TimetableComponent implements OnInit {
   status: string = "departures"
-  timetable: Observable<Object>;
+  timetable = [
+    {
+      name: 'Bloop',
+      time: 'Blahday'
+    },
+    {
+      name: 'Bloopydoo',
+      time: 'Blahdyblaah'
+    }
+  ];
   selectedService: string[];
 
   constructor(
@@ -46,14 +54,16 @@ export class TimetableComponent implements OnInit {
 
   ngOnInit(): void {
     this.parseUrl();
-    this._externalApisService.getDepartures(latLng.lat(), latLng.lng()).subscribe(
-      (departuresBoardInfo) => {
-        this.departuresBoardListings = departuresBoardInfo;
-      };
-
-    parseUrl() {
-      this.route.paramMap.subscribe(params => {
-        this.selectedService = params.get('id').split('_');
-      });
-    }
+    this._externalApisService.getMockData().subscribe(
+      data => {
+        return data.stops.map(data => this.timetable.push(data))
+      }
+    );
   }
+
+  parseUrl() {
+    this.route.paramMap.subscribe(params => {
+      this.selectedService = params.get('id').split('_');
+    });
+  }
+}

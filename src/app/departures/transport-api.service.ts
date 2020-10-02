@@ -1,14 +1,18 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { from, Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators/';
+
+// Interfaces
 
 import { TransportData, TransportDataMember } from './components/main/models/transportapi.interface';
 
-// import { environment } from '../../environments/environment';
+// Environments
+
 import { environment } from '@env/environment'
 
+// Mock data
+import * as mockData from '../../assets/data/mock-data.json';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,6 +24,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ExternalApisService {
+  mockData = mockData;
   data: Observable<TransportData>;
   currentService: any;
   currentTimetable: Observable<Object>;
@@ -86,6 +91,26 @@ export class ExternalApisService {
 
   selectCurrentService(departure) {
     this.currentService = departure;
-    console.log(departure.destination)
+    console.log(departure)
+  }
+
+
+  // getBusStop(latitude: number, longitude: number): Observable<TransportData> {
+  //   const data = this.http.get<TransportData>(
+  //     this.transportApiUrl +
+  //     "places.json?" +
+  //     `&app_id=${environment.transportApi.ID}` +
+  //     `&app_key=${environment.transportApi.key}` +
+  //     `&lat=${latitude}` +
+  //     `&lon=${longitude}` +
+  //     "&type=bus_stop"
+  //   );
+  //   return data
+  // }
+
+  getMockData() {
+    return from(fetch(this.currentService.id)
+      .then(data => data.json())
+      .then(data => data.stops))
   }
 }
