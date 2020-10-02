@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bus-departures"
+    }
+  },
+  "defaultProject": "bus-departures",
+  "cli": {
+    "analytics": false
+  }
 }

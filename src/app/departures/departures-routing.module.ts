@@ -14,7 +14,7 @@ const routes: Routes = [
     component: TimetableComponent
   },
   {
-    path: 'timetable/:id',
+    path: 'timetable/:service/:destination/:departureTime',
     component: TimetableComponent
   },
   {

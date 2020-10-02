@@ -94,9 +94,7 @@ export class MainComponent {
   }
 
   getTimetable(event) {
-    console.log(event.service);
     this._externalApisService.selectCurrentService(event);
-
   }
 
 }

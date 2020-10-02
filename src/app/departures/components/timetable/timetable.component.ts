@@ -14,15 +14,15 @@ import { ExternalApisService } from '../../transport-api.service'
       <section class="title-board">
         <div class="title-element">
           <p>Service number:</p>
-          <h2>{{ selectedService[0] }}</h2>
+          <h2>{{ selectedService.service }}</h2>
         </div>          
         <div class="title-element">
           <p>Destination:</p>
-          <h2>{{ selectedService[1] }}</h2>
+          <h2>{{ selectedService.destination }}</h2>
         </div>          
         <div class="title-element">
           <p>Departing at:</p>
-          <h2>{{ selectedService[2] }}</h2>
+          <h2>{{ selectedService.departureTime }}</h2>
         </div>
         <div *ngFor="let stop of timetable; let i = index">
           <h2 class="bus-service">{{ i }}</h2>
@@ -34,7 +34,9 @@ import { ExternalApisService } from '../../transport-api.service'
       `
 })
 export class TimetableComponent implements OnInit {
+  
   status: string = "departures"
+  
   timetable = [
     {
       name: 'Bloop',
@@ -45,7 +47,12 @@ export class TimetableComponent implements OnInit {
       time: 'Blahdyblaah'
     }
   ];
-  selectedService: string[];
+
+  selectedService: any = {
+    service: '',
+    destination: '',
+    departureTime: '',
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -54,8 +61,10 @@ export class TimetableComponent implements OnInit {
 
   ngOnInit(): void {
     this.parseUrl();
+
     this._externalApisService.getMockData().subscribe(
-      data => {
+      (data: any) => {
+        console.log('time table response', data);
         return data.stops.map(data => this.timetable.push(data))
       }
     );
@@ -63,7 +72,9 @@ export class TimetableComponent implements OnInit {
 
   parseUrl() {
     this.route.paramMap.subscribe(params => {
-      this.selectedService = params.get('id').split('_');
+      this.selectedService.service = params.get('service');
+      this.selectedService.destination = params.get('destination');
+      this.selectedService.departureTime = params.get('departureTime');
     });
   }
 }

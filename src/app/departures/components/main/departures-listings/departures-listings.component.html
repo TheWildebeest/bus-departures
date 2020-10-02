@@ -4,15 +4,16 @@
   </div>
   <div *ngFor="let departure of departuresBoardListings; let i = index" class="bus-stop departure-listing">
     <h3 class="bus-service">{{ departure.service }}</h3>
-    <span class="bus-destination">
+    <div class="bus-destination">
       <h3 class="destination-name">{{ departure.destination }}</h3>
-      <span class="timetable-popup" (click)="handleLeftClick(departure)">
+      <div class="timetable-popup">
         <a
-          [routerLink]="['./timetable/', departure.service + '_' + departure.destination + '_' + departure.departureTime]">
+          (click)="handleLeftClick(departure)"
+          [routerLink]="['./timetable/' + departure.service + '/' + departure.destination + '/' + departure.departureTime]">
           {{ departure.linkText }}
         </a>
-      </span>
-    </span>
+      </div>
+    </div>
     <h3 class="bus-depart-time">{{ departure.departureTime }}</h3>
   </div>
 </div>

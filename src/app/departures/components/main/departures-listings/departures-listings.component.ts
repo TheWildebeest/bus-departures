@@ -7,18 +7,13 @@ import { DeparturesBoardListing } from '../models/transportapi.interface';
 })
 export class DeparturesListingsComponent {
 
+  @Input() busStopName: string;
 
-  @Input()
-  departuresBoardListings: DeparturesBoardListing;
-  @Input()
-  busStopName: string
+  @Input() departuresBoardListings: DeparturesBoardListing;
 
-  @Output()
-  clickDeparture: EventEmitter<string> = new EventEmitter();
+  @Output() clickDeparture: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
-
-  handleLeftClick(departure) {
+  public handleLeftClick(departure) {
     this.clickDeparture.emit(departure);
   }
 }

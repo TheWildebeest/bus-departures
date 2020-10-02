@@ -12,7 +12,7 @@ import { TransportData, TransportDataMember } from './components/main/models/tra
 import { environment } from '@env/environment'
 
 // Mock data
-import * as mockData from '../../assets/data/mock-data.json';
+// import * as mockData from '../../assets/data/mock-data.json';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,14 +24,16 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ExternalApisService {
-  mockData = mockData;
+
   data: Observable<TransportData>;
   currentService: any;
   currentTimetable: Observable<Object>;
   transportApiUrl: string = "https://transportapi.com/v3/uk/";
   atcoCode: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   // get busStops function
   getBusStop(latitude: number, longitude: number): Observable<TransportData> {
@@ -91,7 +93,7 @@ export class ExternalApisService {
 
   selectCurrentService(departure) {
     this.currentService = departure;
-    console.log(departure)
+    console.log('selectCurrentService', departure)
   }
 
 
@@ -108,9 +110,8 @@ export class ExternalApisService {
   //   return data
   // }
 
-  getMockData() {
-    return from(fetch(this.currentService.id)
-      .then(data => data.json())
-      .then(data => data.stops))
+  getMockData(): Observable<any> {
+    const timeTableUrl: string = this.currentService.id;
+    return this.http.get(timeTableUrl);
   }
 }
