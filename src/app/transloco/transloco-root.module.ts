@@ -27,6 +27,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
       useValue: translocoConfig({
         availableLangs: ['en', 'zh', 'de'],
         defaultLang: 'en',
+        fallbackLang: ['zh', 'de'],
         missingHandler: {
           allowEmpty: false,
           logMissingKey: true,
