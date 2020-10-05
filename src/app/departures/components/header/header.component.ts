@@ -1,11 +1,13 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { getTranslationDeclStmts } from '@angular/compiler/src/render3/view/template';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { translate, TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   @Input()
   status: string;
@@ -17,7 +19,11 @@ export class HeaderComponent {
   searchBoxToggled: EventEmitter<any> = new EventEmitter();
 
 
-  constructor() { }
+  constructor(private translationService: TranslocoService) { }
+
+  ngOnInit() {
+    translate('app-name'); 
+  }
 
   handleClick() {
     this.searchBoxToggled.emit()

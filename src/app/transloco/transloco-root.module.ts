@@ -29,12 +29,13 @@ export class TranslocoHttpLoader implements TranslocoLoader {
         defaultLang: 'en',
         missingHandler: {
           allowEmpty: false,
+          logMissingKey: true,
           useFallbackTranslation: true
         },
         failedRetries: 3,
-        // Remove this option if your application doesn't support changing language in runtime.
-        reRenderOnLangChange: true,
         prodMode: environment.production,
+        // Remove this option if your application doesn't support changing language in runtime.
+        // reRenderOnLangChange: true,
       })
     },
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader }
