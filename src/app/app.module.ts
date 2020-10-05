@@ -12,6 +12,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 // custom modules
 import { DeparturesModule } from './departures/departures.module';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslocoRootModule } from './transloco/transloco-root.module';
 
 
 
@@ -26,6 +28,8 @@ import { DeparturesModule } from './departures/departures.module';
     BrowserModule,
     CommonModule,
     DeparturesModule,
+    HttpClientModule,
+    TranslocoRootModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
