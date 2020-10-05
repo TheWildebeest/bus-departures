@@ -1,3 +1,5 @@
 {
-    "app-name": "OMNIBUS"
+    "departures": {
+        "app-name": "OMNIBUS"
+    }
 }

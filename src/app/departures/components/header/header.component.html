@@ -2,8 +2,8 @@
   <div class="omnibus-logo">
     <img src='assets/images/logo.png' />
   </div>
-  <h1 *transloco="let f">
-    <span class="white">{{ f('app-name') }}</span>&#160;<span [class.orange]="status == 'live'">{{ status | uppercase }}</span>
+  <h1 >
+    <span *transloco="let t" class="white">{{ t('departures.app-name') }}</span>&#160;<span [class.orange]="status == 'live'">{{ status | uppercase }}</span>
   </h1>
   <div class="search-box-control">
     <p class="toggle-search-icon" (click)="this.handleClick()">{{ searchIcon }}</p>
